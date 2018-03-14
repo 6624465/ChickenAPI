@@ -10,7 +10,7 @@ namespace ChickenAPI.Controllers
 {
     [RoutePrefix("api/Registration")]
     [ChickenAUTHFilter]
-    public class RegistrationController : ApiController
+    public class Registration1Controller : ApiController
     {
         [HttpPost]
         [Route("Login")]
