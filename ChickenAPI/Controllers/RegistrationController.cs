@@ -28,12 +28,9 @@ namespace ChickenAPI.Controllers
         [Route("test")]
         public IHttpActionResult test()
         {
-            
-
             return Ok();
         }
     }
-
 
     public class Product
     {
