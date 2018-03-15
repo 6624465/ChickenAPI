@@ -9,5 +9,6 @@ namespace Chicken.Repository.Farm.IFarm
 {
     public interface IRegistrationRepository : IRepository<Registration>, IDisposable
     {
+        void UpdateOTPStatus(Registration reg);
     }
 }

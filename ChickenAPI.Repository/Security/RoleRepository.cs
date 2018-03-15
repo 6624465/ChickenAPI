@@ -16,27 +16,27 @@ namespace Chicken.Repository.Security
             entities = _entities;
         }
 
-        public void Add(Role entity)
+        public void Add(Roles entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Attach(Role entity)
+        public void Attach(Roles entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Role entity)
+        public void Delete(Roles entity)
         {
             throw new NotImplementedException();
         }
 
-        public Role Get(Func<Role, bool> predicate)
+        public Roles Get(Func<Roles, bool> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Role> GetAll(Func<Role, bool> predicate = null)
+        public IQueryable<Roles> GetAll(Func<Roles, bool> predicate = null)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +46,7 @@ namespace Chicken.Repository.Security
             throw new NotImplementedException();
         }
 
-        public void Save(Role entity)
+        public void Save(Roles entity)
         {
             throw new NotImplementedException();
         }

@@ -41,7 +41,7 @@ namespace Chicken.EF
             #region Security DB Schema
 
             modelBuilder.Entity<RoleRights>().ToTable("RoleRights", "Security");
-            modelBuilder.Entity<Role>().ToTable("Roles", "Security");
+            modelBuilder.Entity<Roles>().ToTable("Roles", "Security");
             modelBuilder.Entity<Securables>().ToTable("Securables", "Security");
             modelBuilder.Entity<User>().ToTable("User", "Security");
             modelBuilder.Entity<UserRights>().ToTable("UserRights", "Security");

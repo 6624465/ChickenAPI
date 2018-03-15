@@ -19,20 +19,26 @@ namespace ChickenAPI.Areas.Farm.Controllers
         {
             try
             {
-                //registration.OTPSentDate = DateTime.UtcNow;
-                if (registration.ID == 0)
-                    registration.OTPNo = GenerateOTP();
-
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    //uow.RegistrationRepository.Save(registration);
-                    //uow.SaveChanges();
+                    if (registration.ID == 0)
+                    {
+                        registration.OTPNo = GenerateOTP();
+                        registration.IsOTPSent = true;
+                        registration.OTPSentDate = DateTime.UtcNow;
+                        registration.OTPSentCount = 1;
+                    }
+
+                    uow.RegistrationRepository.Save(registration);
+                    uow.SaveChanges();
+
                     SendOTP(registration.MobileNo, registration.OTPNo);
 
+                    return Ok(new
+                    {
+                        registration
+                    });
                 }
-                return Ok(new
-                {
-                });
             }
             catch (Exception ex)
             {
@@ -53,8 +59,43 @@ namespace ChickenAPI.Areas.Farm.Controllers
 
                     return Ok(new
                     {
-                        reg = registration
+                        registration
                     });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateOTPStatus")]
+        public IHttpActionResult UpdateOTPStatus(Registration reg)
+        {
+            try
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    Registration registration = uow.RegistrationRepository.Get(x => x.ID == reg.ID);
+                    if (registration != null && registration.OTPNo == reg.OTPNo)
+                    {
+                        uow.RegistrationRepository.UpdateOTPStatus(reg);
+                        uow.SaveChanges();
+
+                        return Ok(new
+                        {
+                            msg = "Success"
+                        });
+                    }
+                    else
+                    {
+                        //return InternalServerError();
+                        return Ok(new
+                        {
+                            msg = "Failed"
+                        });
+                    }
                 }
             }
             catch (Exception ex)

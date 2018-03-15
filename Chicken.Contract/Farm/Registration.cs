@@ -20,7 +20,7 @@ namespace Chicken.Contract.Farm
         public bool IsOTPSent { get; set; }
         public DateTime? OTPSentDate { get; set; }
         public bool IsOTPReSent { get; set; }
-        public Int16? OTPSentCount { get; set; }
+        public Byte? OTPSentCount { get; set; }
         public string CountryCode { get; set; }
         public bool IsOTPVerified { get; set; }
     }

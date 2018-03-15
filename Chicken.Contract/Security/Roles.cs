@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chicken.Contract.Farm
+namespace Chicken.Contract.Security
 {
-    public class VaccineSchedule
+   public class Roles
     {
         [Key, Column(Order = 0)]
-        public Int32 FarmID { get; set; }
+        public Int32 CompanyCode { get; set; }
         [Key, Column(Order = 1)]
-        public Int32 VaccineCode { get; set; }
+        public string RoleCode { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Chicken.Repository.Security.ISecurity
 {
-    public interface IRoleRepository : IRepository<Role>, IDisposable
+    public interface IRoleRepository : IRepository<Contract.Security.Roles>, IDisposable
     {
     }
 }
