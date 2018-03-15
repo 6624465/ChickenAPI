@@ -1,4 +1,4 @@
-﻿using Chicken.Contract.Security;
+﻿using Chicken.Contract.Farm;
 using Chicken.Repository;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace ChickenAPI.Areas.Security.Controllers
+namespace ChickenAPI.Areas.Farm.Controllers
 {
     [RoutePrefix("api/Registration")]
     [Utilities.ChickenAUTHFilter]
@@ -41,7 +41,7 @@ namespace ChickenAPI.Areas.Security.Controllers
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     Registration reg = new Registration();
-                    reg = uow.RegistrationRepository.Get(x=>x.id==1);
+                    reg = uow.RegistrationRepository.Get(x=>x.ID==1);
                    
                     return Ok(reg);
                 }

@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Chicken.Contract.Security;
+using Chicken.Contract.Farm;
 
 namespace Chicken.EF
 {
@@ -18,16 +18,16 @@ namespace Chicken.EF
         {
             base.OnModelCreating(modelBuilder);
 
-            #region Security DB Schema
+            #region Farm DB Schema
 
-            modelBuilder.Entity<Registration>().ToTable("Registration", "Security");
+            modelBuilder.Entity<Registration>().ToTable("Registration", "Farm");
 
-            #endregion Security DB Schema
+            #endregion Farm DB Schema
         }
 
 
-        #region Security Schema
+        #region Farm Schema
         public virtual DbSet<Registration> Registrations { get; set; }
-        #endregion Security Schema
+        #endregion Farm Schema
     }
 }

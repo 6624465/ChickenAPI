@@ -1,12 +1,12 @@
-﻿using Chicken.Contract.Security;
+﻿using Chicken.Contract.Farm;
 using Chicken.EF;
-using Chicken.Repository.Secutiry.ISecurity;
+using Chicken.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Chicken.Repository.Security
+namespace Chicken.Repository.Farm
 {
     public class RegistrationRepository : IRegistrationRepository
     {

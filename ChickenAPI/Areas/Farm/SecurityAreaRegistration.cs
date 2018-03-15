@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace ChickenAPI.Areas.Security
+namespace ChickenAPI.Areas.Farm
 {
-    public class SecurityAreaRegistration : AreaRegistration 
+    public class FarmAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Security";
+                return "Farm";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Security_default",
-                "Security/{controller}/{action}/{id}",
+                "Farm_default",
+                "Farm/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

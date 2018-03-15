@@ -1,7 +1,7 @@
-﻿using Chicken.Contract.Security;
+﻿using Chicken.Contract.Farm;
 using Chicken.EF;
-using Chicken.Repository.Security;
-using Chicken.Repository.Secutiry.ISecurity;
+using Chicken.Repository.Farm;
+using Chicken.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Chicken.Repository
             entities = new DBContext();
         }
 
-        #region Security Repository
+        #region Farm Repository
 
         IRegistrationRepository registrationRepository = null;
         public IRegistrationRepository RegistrationRepository
@@ -32,7 +32,7 @@ namespace Chicken.Repository
             }
         }
 
-        #endregion Security Repository
+        #endregion Farm Repository
 
 
 
