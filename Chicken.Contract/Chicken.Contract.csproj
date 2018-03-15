@@ -41,8 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Lookup.cs" />
+    <Compile Include="Farm\AnimalProfile.cs" />
+    <Compile Include="Farm\ExpensesEntry.cs" />
+    <Compile Include="Farm\ExpensesMaster.cs" />
+    <Compile Include="Farm\FarmProfile.cs" />
+    <Compile Include="Farm\MedicineMaster.cs" />
+    <Compile Include="Farm\TransporterHeader.cs" />
+    <Compile Include="Farm\TransporterRoute.cs" />
+    <Compile Include="Farm\TreatmentEntry.cs" />
+    <Compile Include="Farm\VaccineEntry.cs" />
+    <Compile Include="Farm\VaccineMaster.cs" />
+    <Compile Include="Farm\VaccineSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Farm\Registration.cs" />
+    <Compile Include="Security\RoleRights.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\Securables.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="Security\UserRights.cs" />
+    <Compile Include="Utility\DocumentNumberDetail.cs" />
+    <Compile Include="Utility\DocumentNumberHeader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

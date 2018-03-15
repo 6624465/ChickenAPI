@@ -13,7 +13,7 @@ namespace ChickenAPI
         public static string HDRAUTHTOKEN = "AUTH_TOKEN";
 
 
-        public static string SmsOTP = "OTP for CKNFM: {0}";
+        public static string SmsOTP = "OTP for CKN-FM: {0}";
         public static string SmsSignUpOTP = "Your CKN-FM SIGN-UP OTP is: {0}";
     }
 }

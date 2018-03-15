@@ -27,7 +27,7 @@ namespace ChickenAPI
             var password = "";
             Random r = new Random();
             int keyLength = Nokeylist.Length;
-            for (var i = 0; i < 6; i++)
+            for (var i = 0; i < 4; i++)
             {
                 password += Nokeylist[r.Next(0, keyLength)];
             }
@@ -36,7 +36,7 @@ namespace ChickenAPI
 
         public bool SendOTP(string To, string OTP)
         {
-            return new smsGenerator().ConfigSms(To, string.Format(Utility.SmsOTP, OTP));
+            return new smsGenerator().ConfigSms(To, string.Format(Utility.SmsSignUpOTP, OTP));
         }
 
         public bool SendOTP(string To)

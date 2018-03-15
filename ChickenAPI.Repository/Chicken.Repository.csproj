@@ -87,6 +87,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Config\IConfig\ILookupRepository.cs" />
+    <Compile Include="Config\LookupRepository.cs" />
+    <Compile Include="Farm\AnimalProfileRepository.cs" />
+    <Compile Include="Farm\ExpensesEntryRepository.cs" />
+    <Compile Include="Farm\ExpensesMasterRepository.cs" />
+    <Compile Include="Farm\FarmProfileRepository.cs" />
+    <Compile Include="Farm\IFarm\IAnimalProfileRepository.cs" />
+    <Compile Include="Farm\IFarm\IExpensesEntryRepository.cs" />
+    <Compile Include="Farm\IFarm\IExpensesMasterRepository.cs" />
+    <Compile Include="Farm\IFarm\IFarmProfileRepository.cs" />
+    <Compile Include="Farm\IFarm\IMedicineMasterRepository.cs" />
+    <Compile Include="Farm\IFarm\ITransporterHeaderRepository.cs" />
+    <Compile Include="Farm\IFarm\ITransporterRouteRepository.cs" />
+    <Compile Include="Farm\IFarm\ITreatmentEntryRepository.cs" />
+    <Compile Include="Farm\IFarm\IVaccineEntryRepository.cs" />
+    <Compile Include="Farm\IFarm\IVaccineMasterRepository.cs" />
+    <Compile Include="Farm\IFarm\IVaccineScheduleRepository.cs" />
+    <Compile Include="Farm\MedicineMasterRepository.cs" />
+    <Compile Include="Farm\TransporterHeaderRepository.cs" />
+    <Compile Include="Farm\TransporterRouteRepository.cs" />
+    <Compile Include="Farm\TreatmentEntryRepository.cs" />
+    <Compile Include="Farm\VaccineEntryRepository.cs" />
+    <Compile Include="Farm\VaccineMasterRepository.cs" />
+    <Compile Include="Farm\VaccineScheduleRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -95,6 +119,16 @@
     <Compile Include="Farm\IFarm\IRegistrationRepository.cs" />
     <Compile Include="Farm\RegistrationRepository.cs" />
     <Compile Include="RepositoryBase.cs" />
+    <Compile Include="Security\ISecurity\IRoleRightsRepository.cs" />
+    <Compile Include="Security\ISecurity\IRoleRepository.cs" />
+    <Compile Include="Security\ISecurity\ISecurablesRepository.cs" />
+    <Compile Include="Security\ISecurity\IUserRepository.cs" />
+    <Compile Include="Security\ISecurity\IUserRightsRepository.cs" />
+    <Compile Include="Security\RoleRightsRepository.cs" />
+    <Compile Include="Security\RoleRepository.cs" />
+    <Compile Include="Security\SecurablesRepository.cs" />
+    <Compile Include="Security\UserRepository.cs" />
+    <Compile Include="Security\UserRightsRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
