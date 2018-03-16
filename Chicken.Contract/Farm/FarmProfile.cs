@@ -12,5 +12,15 @@ namespace Chicken.Contract.Farm
     {
         [Key, Column(Order = 0)]
         public Int32 FarmID { get; set; }
+        public string FarmName { get; set; }
+        public string FarmAddress { get; set; }
+        public string PhoneNo { get; set; }
+        public string MobileNo { get; set; }
+        public string LineID { get; set; }
+        public string SocialPage { get; set; }
+        public string WebSite { get; set; }
+        public string AboutUs { get; set; }
+        public string FarmLogo { get; set; }
+        public bool Status { get; set; }
     }
 }

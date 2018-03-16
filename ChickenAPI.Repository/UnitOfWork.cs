@@ -2,6 +2,8 @@
 using Chicken.EF;
 using Chicken.Repository.Farm;
 using Chicken.Repository.Farm.IFarm;
+using Chicken.Repository.Security;
+using Chicken.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +34,37 @@ namespace Chicken.Repository
             }
         }
 
+        IFarmProfileRepository farmProfileRepository = null;
+        public IFarmProfileRepository FarmProfileRepository
+        {
+            get
+            {
+                if (farmProfileRepository == null)
+                {
+                    farmProfileRepository = new FarmProfileRepository(entities);
+                }
+                return farmProfileRepository;
+            }
+        }
         #endregion Farm Repository
 
+
+        #region security Repository
+
+        IUserRepository userRepository = null;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                {
+                    userRepository = new UserRepository(entities);
+                }
+                return userRepository;
+            }
+        }
+
+        #endregion security Repository
 
 
 
@@ -50,7 +81,7 @@ namespace Chicken.Repository
             entities.Configuration.ValidateOnSaveEnabled = false;
         }
 
-        private bool disposed = false;
+        //private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {
             //if (!this.disposed)

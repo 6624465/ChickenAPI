@@ -1,4 +1,5 @@
 ﻿using Chicken.Contract.Farm;
+using Chicken.Contract.Security;
 using Chicken.Repository;
 using System;
 using System.Collections.Generic;
@@ -104,17 +105,42 @@ namespace ChickenAPI.Areas.Farm.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("Login")]
-        //public IHttpActionResult Product(Product item)
-        //{
-        //    if (item.MobileNo == "123" && item.Password == "a")
-        //    {
-        //        return Ok(item);
-        //    }
+        [HttpPost]
+        [Route("Login")]
+        public IHttpActionResult Login(User usr)
+        {
+            try
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    User user = uow.UserRepository.Get(x => x.UserID == usr.UserID && x.Password == usr.Password);
+                    if (user != null)
+                    {
+                        FarmProfile farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == usr.UserID);
+                        if (farmProfile != null)
+                        {
 
-        //    return Ok();
-        //}
+                        }
+
+                    }
+                    else
+                    {
+                        Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID && x.Password == usr.Password);
+                        if (registration != null)
+                        {
+
+                        }
+                    }
+                    return Ok();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         //[HttpPost]
         //[Route("test")]
         //public IHttpActionResult test()

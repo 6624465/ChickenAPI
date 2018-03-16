@@ -64,7 +64,36 @@ namespace Chicken.EF
 
 
         #region Farm Schema
+        public virtual DbSet<AnimalProfile> AnimalProfiles { get; set; }
+        public virtual DbSet<ExpensesEntry> ExpensesEntrys { get; set; }
+        public virtual DbSet<ExpensesMaster> ExpensesMasters { get; set; }
+        public virtual DbSet<FarmProfile> FarmProfiles { get; set; }
+        public virtual DbSet<MedicineMaster> MedicineMasters { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
+        public virtual DbSet<TransporterHeader> TransporterHeaders { get; set; }
+        public virtual DbSet<TransporterRoute> TransporterRoutes { get; set; }
+        public virtual DbSet<TreatmentEntry> TreatmentEntrys { get; set; }
+        public virtual DbSet<VaccineEntry> VaccineEntrys { get; set; }
+        public virtual DbSet<VaccineMaster> VaccineMasters { get; set; }
+        public virtual DbSet<VaccineSchedule> VaccineSchedules { get; set; }
         #endregion Farm Schema
+
+        #region Security Schema
+        public virtual DbSet<RoleRights> RoleRightss { get; set; }
+        public virtual DbSet<Roles> Roless { get; set; }
+        public virtual DbSet<Securables> Securabless { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRights> UserRightss { get; set; }
+        #endregion Security Schema
+
+        #region Utility Schema
+        public virtual DbSet<DocumentNumberHeader> DocumentNumberHeaders { get; set; }
+        public virtual DbSet<DocumentNumberDetail> DocumentNumberDetails { get; set; }
+        #endregion Utility Schema
+
+
+        #region Config Schema
+        public virtual DbSet<Lookup> Lookups { get; set; }
+        #endregion Config Schema
     }
 }

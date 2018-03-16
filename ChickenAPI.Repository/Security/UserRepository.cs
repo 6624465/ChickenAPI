@@ -3,6 +3,7 @@ using Chicken.EF;
 using Chicken.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace Chicken.Repository.Security
 
         public void Add(User entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Users.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(User entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Users.Attach(entity);
+                entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Users.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public User Get(Func<User, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.Users.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<User> GetAll(Func<User, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.Users.Where(predicate).AsQueryable();
+                }
+                return entities.Users;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace Chicken.Repository.Security
 
         public void Save(User entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User reg = entities.Users
+               .Where(x => x.CompanyCode == entity.CompanyCode).FirstOrDefault();
+
+                if (reg != null) 
+                {
+                    entities.Entry(reg).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support
