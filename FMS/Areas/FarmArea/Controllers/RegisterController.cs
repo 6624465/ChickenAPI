@@ -33,7 +33,10 @@ namespace FMS.Areas.FarmArea.Controllers
                     uow.RegistrationRepository.Save(registration);
                     uow.SaveChanges();
 
-                    SendOTP(registration.MobileNo, registration.OTPNo);
+                    new System.Threading.Thread(() =>
+                    {
+                        SendOTP(registration.MobileNo, registration.OTPNo);
+                    }).Start();
 
                     return Ok(new
                     {
@@ -48,15 +51,15 @@ namespace FMS.Areas.FarmArea.Controllers
         }
 
         [HttpGet]
-        [Route("GetRegistration/{ID}")]
-        public IHttpActionResult GetRegistration(Int32 ID)
+        [Route("GetRegistration/{MobileNo}")]
+        public IHttpActionResult GetRegistration(string MobileNo)
         {
             try
             {
                 Registration registration = new Registration();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    registration = uow.RegistrationRepository.Get(x => x.ID == ID);
+                    registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
 
                     return Ok(new
                     {
@@ -82,6 +85,28 @@ namespace FMS.Areas.FarmArea.Controllers
                     if (registration != null && registration.OTPNo == reg.OTPNo)
                     {
                         uow.RegistrationRepository.UpdateOTPStatus(reg);
+
+                        //Insert User Information
+                        User user = new User();
+                        user.CompanyCode = 1;
+                        user.UserID = registration.MobileNo;
+                        user.UserName = registration.FullName;
+                        user.Password = registration.Password;
+                        user.UserGroup = 0;
+                        user.UserDesignation = 0;
+                        user.EmployeeID = "";
+                        user.ICNo = "";
+                        user.EmailID = registration.Email;
+                        user.ContactNo = registration.MobileNo;
+                        user.IsActive = true;
+                        user.IsAllowLogOn = true;
+                        user.IsOperational = false;
+                        user.CreatedBy = registration.Email;
+                        user.CreatedOn = DateTime.UtcNow;
+                        user.BranchID = 0;
+
+                        uow.UserRepository.Save(user);
+
                         uow.SaveChanges();
 
                         return Ok(new
@@ -111,27 +136,56 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
+                User user = new User();
+                Registration registration = new Registration();
+                FarmProfile farmProfile = new FarmProfile();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    User user = uow.UserRepository.Get(x => x.UserID == usr.UserID && x.Password == usr.Password);
+                    string msg = "";
+                    user = uow.UserRepository.Get(x => x.UserID == usr.UserID && x.Password == usr.Password);
                     if (user != null)
                     {
-                        FarmProfile farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == usr.UserID);
+                        farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == usr.UserID);
                         if (farmProfile != null)
                         {
+                            msg = "goto menu";
 
+                            return Ok(new
+                            {
+                                message = msg,
+                                user
+                            });
                         }
-
+                        else
+                        {
+                            msg = "goto farm";
+                            return Ok(new
+                            {
+                                message = msg,
+                                registration,
+                                user
+                            });
+                        }
                     }
                     else
                     {
-                        Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID && x.Password == usr.Password);
+                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID && x.Password == usr.Password);
                         if (registration != null)
                         {
-
+                            msg = "goto otp";
                         }
+                        else
+                        {
+                            msg = "goto registration";
+                        }
+
+                        return Ok(new
+                        {
+                            message = msg,
+                            registration,
+                            user
+                        });
                     }
-                    return Ok();
                 }
             }
             catch (Exception ex)

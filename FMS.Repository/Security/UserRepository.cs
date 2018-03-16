@@ -92,7 +92,7 @@ namespace FMS.Repository.Security
             try
             {
                 User reg = entities.Users
-               .Where(x => x.CompanyCode == entity.CompanyCode).FirstOrDefault();
+               .Where(x => x.UserID == entity.UserID).FirstOrDefault();
 
                 if (reg != null) 
                 {
