@@ -73,6 +73,39 @@ namespace FMS.Areas.FarmArea.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ResendOTP/{MobileNo}")]
+        public IHttpActionResult ResendOTP(string MobileNo)
+        {
+            try
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
+                    registration.OTPNo = GenerateOTP();
+                    registration.IsOTPSent = true;
+                    registration.OTPSentDate = DateTime.UtcNow;
+                    registration.OTPSentCount = registration.OTPSentCount++;
+                    uow.RegistrationRepository.Save(registration);
+                    uow.SaveChanges();
+
+                    new System.Threading.Thread(() =>
+                    {
+                        SendOTP(MobileNo, registration.OTPNo);
+                    }).Start();
+
+                    return Ok(new
+                    {
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpPost]
         [Route("UpdateOTPStatus")]
         public IHttpActionResult UpdateOTPStatus(Registration reg)

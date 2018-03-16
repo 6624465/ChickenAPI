@@ -96,6 +96,10 @@ namespace FMS.Repository.Farm
 
                 if (reg != null)
                 {
+                    reg.OTPNo = entity.OTPNo;
+                    reg.OTPSentDate = entity.OTPSentDate;
+                    reg.OTPSentCount = entity.OTPSentCount;
+
                     entities.Entry(reg).State = EntityState.Modified;
                 }
                 else
