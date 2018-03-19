@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace FMS.Contract.Farm
 {
@@ -22,5 +23,6 @@ namespace FMS.Contract.Farm
         public string AboutUs { get; set; }
         public string FarmLogo { get; set; }
         public bool? Status { get; set; }
+        public HttpPostedFileBase FileName { get; set; }
     }
 }
