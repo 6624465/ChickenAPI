@@ -9,5 +9,6 @@ namespace FMS.Repository.Security.ISecurity
 {
     public interface IUserRepository : IRepository<User>, IDisposable
     {
+        void UpdatePassword(User reg);
     }
 }

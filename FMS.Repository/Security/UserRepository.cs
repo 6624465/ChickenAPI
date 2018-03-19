@@ -109,6 +109,26 @@ namespace FMS.Repository.Security
             }
         }
 
+        public void UpdatePassword(User entity)
+        {
+            try
+            {
+                User user = entities.Users
+               .Where(x => x.UserID == entity.UserID).FirstOrDefault();
+
+                if (user != null)
+                {
+                    user.Password = entity.Password;
+
+                    entities.Entry(user).State = EntityState.Modified;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
 

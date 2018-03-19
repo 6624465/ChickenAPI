@@ -260,7 +260,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 User user = new User();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    user = uow.UserRepository.Get(x=>x.UserID==MobileNo);
+                    user = uow.UserRepository.Get(x => x.UserID == MobileNo);
                     if (user != null)
                     {
                         isMobileExist = true;
@@ -288,15 +288,53 @@ namespace FMS.Areas.FarmArea.Controllers
             }
         }
         [HttpGet]
-       [Route("IsOtpVerify/{MobileNo}/{Otp}")]
-       public   IHttpActionResult IsOtpVerify(string MobileNo,string Otp)
+        [Route("UpdatePassword/{MobileNo}/{Password}")]
+        public IHttpActionResult UpdatePassword(string MobileNo, string Password)
+        {
+            try
+            {
+                Registration registration = new Registration();
+                User user = new User();
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    user = uow.UserRepository.Get(x => x.UserID == MobileNo);
+                    if (user != null)
+                    {
+                        user.Password = Password;
+                        uow.UserRepository.UpdatePassword(user);
+                    }
+                    else
+                    {
+                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
+                        if (registration != null)
+                        {
+
+                            registration.Password = Password;
+                            uow.RegistrationRepository.UpdatePassword(registration);
+                        }
+                    }
+                    uow.SaveChanges();
+                }
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        [Route("IsOtpVerify/{MobileNo}/{Otp}")]
+        public IHttpActionResult IsOtpVerify(string MobileNo, string Otp)
         {
             try
             {
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo && x.OTPNo== Otp);
-                    if(registration!=null)
+                    Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo && x.OTPNo == Otp);
+                    if (registration != null)
                     {
                         return Ok("Success");
                     }
@@ -312,6 +350,6 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
- 
+
     }
 }

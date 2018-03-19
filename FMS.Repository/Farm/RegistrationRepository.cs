@@ -113,6 +113,26 @@ namespace FMS.Repository.Farm
             }
         }
 
+        public void UpdatePassword(Registration entity)
+        {
+            try
+            {
+                Registration reg = entities.Registrations
+               .Where(x => x.ID == entity.ID).FirstOrDefault();
+
+                if (reg != null)
+                {
+                    reg.Password = entity.Password;
+
+                    entities.Entry(reg).State = EntityState.Modified;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void UpdateOTPStatus(Registration entity)
         {
             try

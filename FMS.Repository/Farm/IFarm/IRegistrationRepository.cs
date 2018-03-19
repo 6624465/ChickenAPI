@@ -10,5 +10,6 @@ namespace FMS.Repository.Farm.IFarm
     public interface IRegistrationRepository : IRepository<Registration>, IDisposable
     {
         void UpdateOTPStatus(Registration reg);
+        void UpdatePassword(Registration reg);
     }
 }
