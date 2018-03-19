@@ -180,14 +180,12 @@ namespace FMS.Areas.FarmArea.Controllers
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     string msg = "";
-                    user = uow.UserRepository.Get(x => x.UserID == usr.UserID && x.Password == usr.Password);
+                    user = uow.UserRepository.Get(x => x.UserID == usr.UserID);
                     if (user != null)
                     {
-                        farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == usr.UserID);
-                        if (farmProfile != null)
+                        if (user.Password != usr.Password)
                         {
-                            msg = "goto menu";
-
+                            msg = "invalid password";
                             return Ok(new
                             {
                                 message = msg,
@@ -196,21 +194,41 @@ namespace FMS.Areas.FarmArea.Controllers
                         }
                         else
                         {
-                            msg = "goto farm";
-                            return Ok(new
+                            farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == usr.UserID);
+                            if (farmProfile != null)
                             {
-                                message = msg,
-                                registration,
-                                user
-                            });
+                                msg = "goto menu";
+                                return Ok(new
+                                {
+                                    message = msg,
+                                    user
+                                });
+                            }
+                            else
+                            {
+                                msg = "goto farm";
+                                return Ok(new
+                                {
+                                    message = msg,
+                                    registration,
+                                    user
+                                });
+                            }
                         }
                     }
                     else
                     {
-                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID && x.Password == usr.Password);
+                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID);
                         if (registration != null)
                         {
-                            msg = "goto otp";
+                            if (registration.Password != usr.Password)
+                            {
+                                msg = "invalid password";
+                            }
+                            else
+                            {
+                                msg = "goto otp";
+                            }
                         }
                         else
                         {
