@@ -21,6 +21,6 @@ namespace FMS.Contract.Farm
         public string WebSite { get; set; }
         public string AboutUs { get; set; }
         public string FarmLogo { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
     }
 }

@@ -16,5 +16,15 @@ namespace FMS.Contract.Farm
         public Int32 FarmID { get; set; }
         [Key, Column(Order = 2)]
         public Int32 AnimalCode { get; set; }
+        public Int16? AnimalAge { get; set; }
+        public string VaccineType { get; set; }
+        public string VaccineName { get; set; }
+        public string VaccineCompany { get; set; }
+        public string Remarks { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

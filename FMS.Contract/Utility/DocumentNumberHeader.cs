@@ -16,5 +16,16 @@ namespace FMS.Contract.Utility
         public string DocumentID { get; set; }
         [Key, Column(Order = 2)]
         public string DocumentKey { get; set; }
+        public string DocumentPrefix { get; set; }
+        public Int16 NumberLength { get; set; }
+        public Int16 LastNumber { get; set; }
+        public bool UseCompany { get; set; }
+        public bool UseBranch { get; set; }
+        public bool UseYear { get; set; }
+        public bool UseMonth { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }
