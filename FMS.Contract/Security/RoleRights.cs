@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FMS.Contract.Security
 {
-   public class RoleRights
+    public class RoleRights
     {
         [Key, Column(Order = 0)]
         public Int32 CompanyCode { get; set; }
@@ -16,5 +16,6 @@ namespace FMS.Contract.Security
         public string RoleCode { get; set; }
         [Key, Column(Order = 2)]
         public Int32 SecurableItem { get; set; }
+        public byte? AccessRight { get; set; }
     }
 }
