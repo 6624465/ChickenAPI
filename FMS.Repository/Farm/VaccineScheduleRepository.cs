@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(VaccineSchedule entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineSchedules.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(VaccineSchedule entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineSchedules.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(VaccineSchedule entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineSchedules.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public VaccineSchedule Get(Func<VaccineSchedule, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.VaccineSchedules.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<VaccineSchedule> GetAll(Func<VaccineSchedule, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.VaccineSchedules.Where(predicate).AsQueryable();
+                }
+                return entities.VaccineSchedules;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(VaccineSchedule entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                VaccineSchedule vaccineSchedule = entities.VaccineSchedules
+               .Where(x => x.FarmID == entity.FarmID && x.VaccineCode == entity.VaccineCode).FirstOrDefault();
+
+                if (vaccineSchedule != null)
+                {
+                    entities.Entry(vaccineSchedule).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

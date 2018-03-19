@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Config.IConfig;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Config
 
         public void Add(Lookup entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Lookups.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(Lookup entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Lookups.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(Lookup entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Lookups.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Lookup Get(Func<Lookup, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.Lookups.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<Lookup> GetAll(Func<Lookup, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.Lookups.Where(predicate).AsQueryable();
+                }
+                return entities.Lookups;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Config
 
         public void Save(Lookup entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Lookup lookup = entities.Lookups
+               .Where(x => x.LookupID == entity.LookupID).FirstOrDefault();
+
+                if (lookup != null)
+                {
+                    entities.Entry(lookup).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

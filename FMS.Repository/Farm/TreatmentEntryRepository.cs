@@ -3,12 +3,13 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace FMS.Repository.Farm
 {
-    public class TreatmentEntryRepository: ITreatmentEntryRepository
+    public class TreatmentEntryRepository : ITreatmentEntryRepository
     {
         private DBContext entities = null;
         public TreatmentEntryRepository(DBContext _entities)
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(TreatmentEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TreatmentEntrys.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(TreatmentEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TreatmentEntrys.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(TreatmentEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TreatmentEntrys.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public TreatmentEntry Get(Func<TreatmentEntry, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.TreatmentEntrys.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<TreatmentEntry> GetAll(Func<TreatmentEntry, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.TreatmentEntrys.Where(predicate).AsQueryable();
+                }
+                return entities.TreatmentEntrys;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(TreatmentEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TreatmentEntry transporterHeader = entities.TreatmentEntrys
+               .Where(x => x.FarmID == entity.FarmID && x.RecordID == entity.RecordID && x.AnimalCode == entity.AnimalCode).FirstOrDefault();
+
+                if (transporterHeader != null)
+                {
+                    entities.Entry(transporterHeader).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

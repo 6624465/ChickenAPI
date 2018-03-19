@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Security
 
         public void Add(Roles entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Roless.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(Roles entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Roless.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(Roles entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Roless.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Roles Get(Func<Roles, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.Roless.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<Roles> GetAll(Func<Roles, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.Roless.Where(predicate).AsQueryable();
+                }
+                return entities.Roless;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Security
 
         public void Save(Roles entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Roles roles = entities.Roless
+               .Where(x => x.RoleCode == entity.RoleCode).FirstOrDefault();
+
+                if (roles != null)
+                {
+                    entities.Entry(roles).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

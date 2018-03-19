@@ -3,12 +3,13 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace FMS.Repository.Farm
 {
-    public class TransporterRouteRepository: ITransporterRouteRepository
+    public class TransporterRouteRepository : ITransporterRouteRepository
     {
         private DBContext entities = null;
         public TransporterRouteRepository(DBContext _entities)
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(TransporterRoute entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TransporterRoutes.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(TransporterRoute entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TransporterRoutes.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(TransporterRoute entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.TransporterRoutes.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public TransporterRoute Get(Func<TransporterRoute, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.TransporterRoutes.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<TransporterRoute> GetAll(Func<TransporterRoute, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.TransporterRoutes.Where(predicate).AsQueryable();
+                }
+                return entities.TransporterRoutes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(TransporterRoute entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TransporterRoute transporterRoute = entities.TransporterRoutes
+               .Where(x => x.FarmID == entity.FarmID && x.TransporterID == entity.TransporterID && x.Origin == entity.Origin).FirstOrDefault();
+
+                if (transporterRoute != null)
+                {
+                    entities.Entry(transporterRoute).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

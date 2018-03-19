@@ -3,12 +3,13 @@ using FMS.EF;
 using FMS.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace FMS.Repository.Security
 {
-    public class RoleRightsRepository: IRoleRightsRepository
+    public class RoleRightsRepository : IRoleRightsRepository
     {
         private DBContext entities = null;
         public RoleRightsRepository(DBContext _entities)
@@ -18,27 +19,67 @@ namespace FMS.Repository.Security
 
         public void Add(RoleRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.RoleRightss.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(RoleRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.RoleRightss.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(RoleRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.RoleRightss.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public RoleRights Get(Func<RoleRights, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.RoleRightss.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<RoleRights> GetAll(Func<RoleRights, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.RoleRightss.Where(predicate).AsQueryable();
+                }
+                return entities.RoleRightss;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Security
 
         public void Save(RoleRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                RoleRights roleRights = entities.RoleRightss
+               .Where(x => x.RoleCode == entity.RoleCode && x.CompanyCode == entity.CompanyCode && x.SecurableItem == entity.SecurableItem).FirstOrDefault();
+
+                if (roleRights != null)
+                {
+                    entities.Entry(roleRights).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

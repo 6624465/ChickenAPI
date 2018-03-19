@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(ExpensesEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.ExpensesEntrys.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(ExpensesEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.ExpensesEntrys.Attach(entity);
+                entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(ExpensesEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.ExpensesEntrys.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public ExpensesEntry Get(Func<ExpensesEntry, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.ExpensesEntrys.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<ExpensesEntry> GetAll(Func<ExpensesEntry, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.ExpensesEntrys.Where(predicate).AsQueryable();
+                }
+                return entities.ExpensesEntrys;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(ExpensesEntry entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ExpensesEntry expensesEntry = entities.ExpensesEntrys
+               .Where(x => x.FarmID == entity.FarmID && x.ExpensesCode == entity.ExpensesCode).FirstOrDefault();
+
+                if (expensesEntry != null)
+                {
+                    entities.Entry(expensesEntry).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

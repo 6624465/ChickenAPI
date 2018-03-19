@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(AnimalProfile entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.AnimalProfiles.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(AnimalProfile entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.AnimalProfiles.Attach(entity);
+                entities.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(AnimalProfile entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.AnimalProfiles.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public AnimalProfile Get(Func<AnimalProfile, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.AnimalProfiles.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<AnimalProfile> GetAll(Func<AnimalProfile, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.AnimalProfiles.Where(predicate).AsQueryable();
+                }
+                return entities.AnimalProfiles;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(AnimalProfile entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                AnimalProfile animalprofile = entities.AnimalProfiles
+               .Where(x => x.AnimalCode == entity.AnimalCode).FirstOrDefault();
+
+                if (animalprofile != null)
+                {
+                    entities.Entry(animalprofile).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

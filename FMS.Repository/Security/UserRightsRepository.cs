@@ -3,12 +3,13 @@ using FMS.EF;
 using FMS.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace FMS.Repository.Security
 {
-    public class UserRightsRepository: IUserRightsRepository
+    public class UserRightsRepository : IUserRightsRepository
     {
         private DBContext entities = null;
         public UserRightsRepository(DBContext _entities)
@@ -18,27 +19,67 @@ namespace FMS.Repository.Security
 
         public void Add(UserRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.UserRightss.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(UserRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.UserRightss.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(UserRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.UserRightss.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public UserRights Get(Func<UserRights, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.UserRightss.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<UserRights> GetAll(Func<UserRights, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.UserRightss.Where(predicate).AsQueryable();
+                }
+                return entities.UserRightss;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Security
 
         public void Save(UserRights entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                UserRights userRights = entities.UserRightss
+               .Where(x => x.UserID == entity.UserID && x.SecurableItem == entity.SecurableItem && x.LinkGroup == entity.LinkGroup && x.LinkID == entity.LinkID).FirstOrDefault();
+
+                if (userRights != null)
+                {
+                    entities.Entry(userRights).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Security.ISecurity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Security
 
         public void Add(Securables entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Securabless.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(Securables entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Securabless.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(Securables entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.Securabless.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Securables Get(Func<Securables, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.Securabless.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<Securables> GetAll(Func<Securables, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.Securabless.Where(predicate).AsQueryable();
+                }
+                return entities.Securabless;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Security
 
         public void Save(Securables entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Securables securables = entities.Securabless
+               .Where(x => x.SecurableID == entity.SecurableID).FirstOrDefault();
+
+                if (securables != null)
+                {
+                    entities.Entry(securables).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support

@@ -3,6 +3,7 @@ using FMS.EF;
 using FMS.Repository.Farm.IFarm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,27 +19,67 @@ namespace FMS.Repository.Farm
 
         public void Add(VaccineMaster entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineMasters.Add(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Attach(VaccineMaster entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineMasters.Attach(entity);
+                entities.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Delete(VaccineMaster entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                entities.VaccineMasters.Remove(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public VaccineMaster Get(Func<VaccineMaster, bool> predicate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return entities.VaccineMasters.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IQueryable<VaccineMaster> GetAll(Func<VaccineMaster, bool> predicate = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (predicate != null)
+                {
+                    return entities.VaccineMasters.Where(predicate).AsQueryable();
+                }
+                return entities.VaccineMasters;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetRecordsCount()
@@ -48,7 +89,24 @@ namespace FMS.Repository.Farm
 
         public void Save(VaccineMaster entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                VaccineMaster vaccineMaster = entities.VaccineMasters
+               .Where(x => x.FarmID == entity.FarmID && x.VaccineCode == entity.VaccineCode).FirstOrDefault();
+
+                if (vaccineMaster != null)
+                {
+                    entities.Entry(vaccineMaster).State = EntityState.Modified;
+                }
+                else
+                {
+                    Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #region IDisposable Support
