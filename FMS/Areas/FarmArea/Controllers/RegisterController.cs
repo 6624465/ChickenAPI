@@ -255,16 +255,31 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
+                bool isMobileExist = false;
                 Registration registration = new Registration();
+                User user = new User();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
-                    if (registration != null)
-                        return Ok("MobileNo Already Exists...");
+                    user = uow.UserRepository.Get(x=>x.UserID==MobileNo);
+                    if (user != null)
+                    {
+                        isMobileExist = true;
+                        return Ok(isMobileExist);
+                    }
                     else
-                        return Ok();
+                    {
+                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
+                        if (registration != null)
+                        {
+                            isMobileExist = true;
+                            return Ok(isMobileExist);
+                        }
+                        else
+                        {
+                            return Ok(isMobileExist);
+                        }
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -272,7 +287,8 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
-
+       //[HttpGet]
+       //[Route("IsMobileNoExistsForgotPassword/")]
         //[HttpPost]
         //[Route("test")]
         //public IHttpActionResult test()
