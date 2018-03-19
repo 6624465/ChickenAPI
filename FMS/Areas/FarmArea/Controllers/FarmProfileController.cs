@@ -77,15 +77,15 @@ namespace FMS.Areas.FarmArea.Controllers
         }
 
         [HttpGet]
-        [Route("GetFarmProfile/{FarmID}")]
-        public IHttpActionResult GetFarmProfile(Int32 FarmID)
+        [Route("GetFarmProfile/{MobileNo}")]
+        public IHttpActionResult GetFarmProfile(string MobileNo)
         {
             try
             {
                 FarmProfile farmProfile = new FarmProfile();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    farmProfile = uow.FarmProfileRepository.Get(x => x.FarmID == FarmID);
+                    farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == MobileNo);
 
                     return Ok(new
                     {
