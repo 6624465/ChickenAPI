@@ -287,33 +287,31 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
-       //[HttpGet]
-       //[Route("IsMobileNoExistsForgotPassword/")]
-        //[HttpPost]
-        //[Route("test")]
-        //public IHttpActionResult test()
-        //{
-        //    return Ok();
-        //}
+        [HttpGet]
+       [Route("IsOtpVerify/{MobileNo}/{Otp}")]
+       public   IHttpActionResult IsOtpVerify(string MobileNo,string Otp)
+        {
+            try
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo && x.OTPNo== Otp);
+                    if(registration!=null)
+                    {
+                        return Ok("Success");
+                    }
+                    else
+                        return Ok("Invalid Otp Number..");
 
-        //[HttpGet]
-        //[Route("test1")]
-        //public IHttpActionResult test1()
-        //{
-        //    try
-        //    {
-        //        using (UnitOfWork uow = new UnitOfWork())
-        //        {
-        //            Registration reg = new Registration();
-        //            reg = uow.RegistrationRepository.Get(x=>x.ID==1);
+                }
 
-        //            return Ok(reg);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+ 
     }
 }
