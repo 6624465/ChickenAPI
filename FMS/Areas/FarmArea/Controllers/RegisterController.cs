@@ -226,7 +226,29 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        [Route("IsMobileNoExists/{MobileNo}")]
+        public IHttpActionResult IsMobileNoExists(string MobileNo)
+        {
+            try
+            {
+                Registration registration = new Registration();
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    registration = uow.RegistrationRepository.Get(x=>x.MobileNo==MobileNo);
+                    if (registration != null)
+                        return Ok("MobileNo Already Exists...");
+                    else
+                        return Ok();
+                }
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
         //[HttpPost]
         //[Route("test")]
