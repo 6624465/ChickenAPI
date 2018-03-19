@@ -82,12 +82,16 @@ namespace FMS.Areas.FarmArea.Controllers
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     Registration registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
-                    registration.OTPNo = GenerateOTP();
-                    registration.IsOTPSent = true;
-                    registration.OTPSentDate = DateTime.UtcNow;
-                    registration.OTPSentCount = registration.OTPSentCount++;
-                    uow.RegistrationRepository.Save(registration);
-                    uow.SaveChanges();
+
+                    if (DateTime.UtcNow > registration.OTPSentDate.Value.AddMinutes(5))
+                    {
+                        registration.OTPNo = GenerateOTP();
+                        registration.IsOTPSent = true;
+                        registration.OTPSentDate = DateTime.UtcNow;
+                        registration.OTPSentCount = registration.OTPSentCount++;
+                        uow.RegistrationRepository.Save(registration);
+                        uow.SaveChanges();
+                    }
 
                     new System.Threading.Thread(() =>
                     {
@@ -96,7 +100,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     return Ok(new
                     {
-
+                        registration
                     });
                 }
             }
@@ -144,7 +148,8 @@ namespace FMS.Areas.FarmArea.Controllers
 
                         return Ok(new
                         {
-                            msg = "Success"
+                            msg = "Success",
+                            registration
                         });
                     }
                     else
@@ -235,7 +240,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 Registration registration = new Registration();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    registration = uow.RegistrationRepository.Get(x=>x.MobileNo==MobileNo);
+                    registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
                     if (registration != null)
                         return Ok("MobileNo Already Exists...");
                     else
