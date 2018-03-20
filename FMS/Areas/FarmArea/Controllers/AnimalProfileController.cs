@@ -93,7 +93,7 @@ namespace FMS.Areas.FarmArea.Controllers
         }
 
         [HttpGet]
-        [Route("GetFarmProfile/{AnimalCode}/{FarmID}")]
+        [Route("GetAnimalProfile/{AnimalCode}/{FarmID}")]
         public IHttpActionResult GetFarmProfile(int AnimalCode, int FarmID)
         {
             try
@@ -122,7 +122,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
 
         [HttpGet]
-        [Route("GetFarmProfileList/{FarmID}")]
+        [Route("GetAnimalProfileList/{FarmID}")]
         public IHttpActionResult GetFarmProfileList(int FarmID)
         {
             try
