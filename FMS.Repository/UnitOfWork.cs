@@ -87,6 +87,97 @@ namespace FMS.Repository
                 return expensesMasterRepository;
             }
         }
+
+        IMedicineMasterRepository medicineMasterRepository = null;
+        public IMedicineMasterRepository MedicineMasterRepository
+        {
+            get
+            {
+                if (medicineMasterRepository == null)
+                {
+                    medicineMasterRepository = new MedicineMasterRepository(entities);
+                }
+                return medicineMasterRepository;
+            }
+        }
+
+        ITransporterHeaderRepository transporterHeaderRepository = null;
+        public ITransporterHeaderRepository TransporterHeaderRepository
+        {
+            get
+            {
+                if (transporterHeaderRepository == null)
+                {
+                    transporterHeaderRepository = new TransporterHeaderRepository(entities);
+                }
+                return transporterHeaderRepository;
+            }
+        }
+
+        ITransporterRouteRepository transporterRouteRepository = null;
+        public ITransporterRouteRepository TransporterRouteRepository
+        {
+            get
+            {
+                if (transporterRouteRepository == null)
+                {
+                    transporterRouteRepository = new TransporterRouteRepository(entities);
+                }
+                return transporterRouteRepository;
+            }
+        }
+
+        ITreatmentEntryRepository treatmentEntryRepository = null;
+        public ITreatmentEntryRepository TreatmentEntryRepository
+        {
+            get
+            {
+                if (treatmentEntryRepository == null)
+                {
+                    treatmentEntryRepository = new TreatmentEntryRepository(entities);
+                }
+                return treatmentEntryRepository;
+            }
+        }
+
+        IVaccineEntryRepository vaccineEntryRepository = null;
+        public IVaccineEntryRepository VaccineEntryRepository
+        {
+            get
+            {
+                if (vaccineEntryRepository == null)
+                {
+                    vaccineEntryRepository = new VaccineEntryRepository(entities);
+                }
+                return vaccineEntryRepository;
+            }
+        }
+
+        IVaccineMasterRepository vaccineMasterRepository = null;
+        public IVaccineMasterRepository VaccineMasterRepository
+        {
+            get
+            {
+                if (vaccineMasterRepository == null)
+                {
+                    vaccineMasterRepository = new VaccineMasterRepository(entities);
+                }
+                return vaccineMasterRepository;
+            }
+        }
+
+        IVaccineScheduleRepository vaccineScheduleRepository = null;
+        public IVaccineScheduleRepository VaccineScheduleRepository
+        {
+            get
+            {
+                if (vaccineScheduleRepository == null)
+                {
+                    vaccineScheduleRepository = new VaccineScheduleRepository(entities);
+                }
+                return vaccineScheduleRepository;
+            }
+        }
         #endregion Farm Repository
 
 
@@ -108,7 +199,7 @@ namespace FMS.Repository
         #endregion security Repository
 
 
-        #region security Repository
+        #region config Repository
 
         ILookupRepository lookupRepository = null;
         public ILookupRepository LookupRepository
@@ -123,7 +214,7 @@ namespace FMS.Repository
             }
         }
 
-        #endregion security Repository
+        #endregion config Repository
 
 
 

@@ -103,8 +103,8 @@ namespace FMS.Areas.FarmArea.Controllers
                 {
                     animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == AnimalCode && x.FarmID == FarmID);
 
-                    var animalStatus = uow.LookupRepository.GetAll(x => x.LookupCategory == "AnimalStatus").ToList();
-                    var gender = uow.LookupRepository.GetAll(x => x.LookupCategory == "Gender").ToList();
+                    var animalStatus = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_ANIMALSTATUS).ToList();
+                    var gender = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_GENDER).ToList();
 
                     return Ok(new
                     {
