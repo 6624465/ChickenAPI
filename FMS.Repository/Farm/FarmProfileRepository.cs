@@ -91,12 +91,13 @@ namespace FMS.Repository.Farm
         {
             try
             {
-                FarmProfile reg = entities.FarmProfiles
-               .Where(x => x.MobileNo == entity.MobileNo).FirstOrDefault();
+                FarmProfile farmProfile = entities.FarmProfiles
+               .Where(x => x.FarmID == entity.FarmID).FirstOrDefault();
 
-                if (reg != null)
+                if (farmProfile != null)
                 {
-                    entities.Entry(reg).State = EntityState.Modified;
+                    farmProfile = entity;
+                    entities.Entry(farmProfile).State = EntityState.Modified;
                 }
                 else
                 {
