@@ -303,16 +303,15 @@ namespace FMS.Areas.FarmArea.Controllers
                         user.Password = Password;
                         uow.UserRepository.UpdatePassword(user);
                     }
-                    else
-                    {
-                        registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
-                        if (registration != null)
-                        {
 
-                            registration.Password = Password;
-                            uow.RegistrationRepository.UpdatePassword(registration);
-                        }
+                    registration = uow.RegistrationRepository.Get(x => x.MobileNo == MobileNo);
+                    if (registration != null)
+                    {
+
+                        registration.Password = Password;
+                        uow.RegistrationRepository.UpdatePassword(registration);
                     }
+
                     uow.SaveChanges();
                 }
                 return Ok("Success");
