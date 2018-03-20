@@ -27,14 +27,14 @@ namespace FMS.Areas.FarmArea.Controllers
                     if (animalProfileVm.AnimalCode == 0)
                     {
                         animalProfile = new AnimalProfile();
-                        animalProfile.CreatedBy = animalProfileVm.CreatedBy;
+                        animalProfile.CreatedBy = "ADMIN";
                         animalProfile.CreatedOn = DateTime.UtcNow;
                     }
                     else
                     {
                         animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == animalProfileVm.AnimalCode);
 
-                        animalProfile.ModifiedBy = animalProfileVm.ModifiedBy;
+                        animalProfile.ModifiedBy = "ADMIN";
                         animalProfile.ModifiedOn = DateTime.UtcNow;
                     }
 
@@ -103,9 +103,14 @@ namespace FMS.Areas.FarmArea.Controllers
                 {
                     animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == AnimalCode && x.FarmID == FarmID);
 
+                    var animalStatus = uow.LookupRepository.GetAll(x => x.LookupCategory == "AnimalStatus").ToList();
+                    var gender = uow.LookupRepository.GetAll(x => x.LookupCategory == "Gender").ToList();
+
                     return Ok(new
                     {
-                        animalProfile
+                        animalProfile,
+                        gender,
+                        animalStatus
                     });
                 }
             }

@@ -1,5 +1,7 @@
 ﻿using FMS.Contract.Farm;
 using FMS.EF;
+using FMS.Repository.Config;
+using FMS.Repository.Config.IConfig;
 using FMS.Repository.Farm;
 using FMS.Repository.Farm.IFarm;
 using FMS.Repository.Security;
@@ -100,6 +102,24 @@ namespace FMS.Repository
                     userRepository = new UserRepository(entities);
                 }
                 return userRepository;
+            }
+        }
+
+        #endregion security Repository
+
+
+        #region security Repository
+
+        ILookupRepository lookupRepository = null;
+        public ILookupRepository LookupRepository
+        {
+            get
+            {
+                if (lookupRepository == null)
+                {
+                    lookupRepository = new LookupRepository(entities);
+                }
+                return lookupRepository;
             }
         }
 

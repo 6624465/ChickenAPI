@@ -162,6 +162,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\ConfigArea\ConfigAreaAreaRegistration.cs" />
+    <Compile Include="Areas\ConfigArea\Controllers\LookupController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\AnimalProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\FarmProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\RegisterController.cs" />
@@ -187,6 +189,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\FarmArea\Views\web.config" />
+    <Content Include="Areas\ConfigArea\Views\web.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -212,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\ConfigArea\Models\" />
+    <Folder Include="Areas\ConfigArea\Views\Shared\" />
     <Folder Include="Areas\FarmArea\Models\" />
     <Folder Include="Areas\FarmArea\Views\Shared\" />
     <Folder Include="Models\" />
