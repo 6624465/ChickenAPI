@@ -43,13 +43,11 @@ namespace FMS.Areas.FarmArea.Controllers
                     farmProfile.WebSite = farmProfileVm.WebSite;
                     farmProfile.AboutUs = farmProfileVm.AboutUs;
 
-                    var myfilename = string.Format(@"{0}{1}", "FarmLogo_" + farmProfileVm.MobileNo, ".jpeg");
+                    var myfilename = string.Format(@"{0}{1}", Guid.NewGuid(), ".jpeg");
                     if (farmProfileVm.FileName != null && farmProfileVm.FileName.Length > 0)
                     {
                         farmProfile.FarmLogo = myfilename;
                     }
-                    //else
-                    //    farmProfile.FarmLogo = null;
 
                     uow.FarmProfileRepository.Save(farmProfile);
                     uow.SaveChanges();
