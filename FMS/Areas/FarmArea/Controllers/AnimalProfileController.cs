@@ -28,14 +28,14 @@ namespace FMS.Areas.FarmArea.Controllers
                     {
                         animalProfile = new AnimalProfile();
                         animalProfile.CreatedBy = animalProfileVm.CreatedBy;
-                        animalProfile.CreatedOn = animalProfileVm.CreatedOn;
+                        animalProfile.CreatedOn = DateTime.UtcNow;
                     }
                     else
                     {
                         animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == animalProfileVm.AnimalCode);
 
                         animalProfile.ModifiedBy = animalProfileVm.ModifiedBy;
-                        animalProfile.ModifiedOn = animalProfileVm.ModifiedOn;
+                        animalProfile.ModifiedOn = DateTime.UtcNow;
                     }
 
                     animalProfile.FarmID = animalProfileVm.FarmID;
