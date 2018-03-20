@@ -4,12 +4,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace FMS
 {
     public class ApiBase : ApiController
     {
+        public string USERID
+        {
+            get
+            {
+                return HttpContext.Current.Request.Headers[Utility.HDRUSERID];
+            }
+        }
+        public Int32 COMPANYID
+        {
+            get
+            {
+                return Convert.ToInt32(HttpContext.Current.Request.Headers[Utility.HDRCOMPANYID]);
+            }
+        }
+        public Int64 BRANCHID
+        {
+            get
+            {
+                return Convert.ToInt64(HttpContext.Current.Request.Headers[Utility.HDRBRANCHID]);
+            }
+        }
+        public string AUTHTOKEN
+        {
+            get
+            {
+                return HttpContext.Current.Request.Headers[Utility.HDRAUTHTOKEN];
+            }
+        }
+
         public string HeaderValueByKey(string key)
         {
             IEnumerable<string> headerValues;
