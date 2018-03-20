@@ -125,7 +125,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                         //Insert User Information
                         User user = new User();
-                        user.CompanyCode = 1;
+                        user.CompanyCode = registration.ID;
                         user.UserID = registration.MobileNo;
                         user.UserName = registration.FullName;
                         user.Password = registration.Password;
