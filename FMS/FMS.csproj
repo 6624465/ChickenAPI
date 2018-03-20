@@ -162,6 +162,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\FarmArea\Controllers\AnimalProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\FarmProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\RegisterController.cs" />
     <Compile Include="Areas\FarmArea\FarmAreaAreaRegistration.cs" />

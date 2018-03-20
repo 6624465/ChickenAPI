@@ -46,6 +46,45 @@ namespace FMS.Repository
                 return farmProfileRepository;
             }
         }
+
+        IAnimalProfileRepository animalProfileRepository = null;
+        public IAnimalProfileRepository AnimalProfileRepository
+        {
+            get
+            {
+                if (animalProfileRepository == null)
+                {
+                    animalProfileRepository = new AnimalProfileRepository(entities);
+                }
+                return animalProfileRepository;
+            }
+        }
+
+        IExpensesEntryRepository expensesEntryRepository = null;
+        public IExpensesEntryRepository ExpensesEntryRepository
+        {
+            get
+            {
+                if (expensesEntryRepository == null)
+                {
+                    expensesEntryRepository = new ExpensesEntryRepository(entities);
+                }
+                return expensesEntryRepository;
+            }
+        }
+
+        IExpensesMasterRepository expensesMasterRepository = null;
+        public IExpensesMasterRepository ExpensesMasterRepository
+        {
+            get
+            {
+                if (expensesMasterRepository == null)
+                {
+                    expensesMasterRepository = new ExpensesMasterRepository(entities);
+                }
+                return expensesMasterRepository;
+            }
+        }
         #endregion Farm Repository
 
 

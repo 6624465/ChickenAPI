@@ -63,6 +63,7 @@
     <Compile Include="Security\UserRights.cs" />
     <Compile Include="Utility\DocumentNumberDetail.cs" />
     <Compile Include="Utility\DocumentNumberHeader.cs" />
+    <Compile Include="ViewModel\AnimalProfileVM.cs" />
     <Compile Include="ViewModel\FarmProfileVM.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
