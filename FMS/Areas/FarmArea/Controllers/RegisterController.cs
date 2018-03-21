@@ -180,17 +180,21 @@ namespace FMS.Areas.FarmArea.Controllers
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     string msg = "";
+                    string userid = "";
+                    int FarmID = 0;
                     user = uow.UserRepository.Get(x => x.UserID == usr.UserID);
                     if (user != null)
                     {
+                        userid = usr.UserID;
                         if (user.Password != usr.Password)
                         {
                             msg = "invalid password";
-                            return Ok(new
-                            {
-                                message = msg,
-                                user
-                            });
+                            //return Ok(new
+                            //{
+                            //    message = msg,
+                            //    userid = usr.UserID,
+                            //    FarmID = 0
+                            //});
                         }
                         else
                         {
@@ -198,21 +202,23 @@ namespace FMS.Areas.FarmArea.Controllers
                             if (farmProfile != null)
                             {
                                 msg = "goto menu";
-                                return Ok(new
-                                {
-                                    message = msg,
-                                    user
-                                });
+                                FarmID = farmProfile.FarmID;
+                                //return Ok(new
+                                //{
+                                //    message = msg,
+                                //    userid = usr.UserID,
+                                //    FarmID = 0
+                                //});
                             }
                             else
                             {
                                 msg = "goto farm";
-                                return Ok(new
-                                {
-                                    message = msg,
-                                    registration,
-                                    user
-                                });
+                                //return Ok(new
+                                //{
+                                //    message = msg,
+                                //    userid = usr.UserID,
+                                //    FarmID = 0
+                                //});
                             }
                         }
                     }
@@ -221,6 +227,7 @@ namespace FMS.Areas.FarmArea.Controllers
                         registration = uow.RegistrationRepository.Get(x => x.MobileNo == usr.UserID);
                         if (registration != null)
                         {
+                            userid = usr.UserID;
                             if (registration.Password != usr.Password)
                             {
                                 msg = "invalid password";
@@ -234,14 +241,14 @@ namespace FMS.Areas.FarmArea.Controllers
                         {
                             msg = "goto registration";
                         }
-
-                        return Ok(new
-                        {
-                            message = msg,
-                            registration,
-                            user
-                        });
                     }
+
+                    return Ok(new
+                    {
+                        message = msg,
+                        userid,
+                        FarmID
+                    });
                 }
             }
             catch (Exception ex)

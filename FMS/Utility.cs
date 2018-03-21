@@ -8,7 +8,7 @@ namespace FMS
     public class Utility
     {
         public static string HDRUSERID = "USERID";
-        public static string HDRCOMPANYID = "COMPANY_ID";
+        public static string HDRFARMID = "FarmID";
         public static string HDRBRANCHID = "BRANCH_ID";
         public static string HDRAUTHTOKEN = "AUTH_TOKEN";
 

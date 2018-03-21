@@ -24,7 +24,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if (vaccineMasterVm.VaccineCode == 0)
+                    if (vaccineMasterVm.VaccineCode == -1)
                     {
                         vaccineMaster = new VaccineMaster();
                         vaccineMaster.CreatedBy = "ADMIN";
@@ -38,7 +38,7 @@ namespace FMS.Areas.FarmArea.Controllers
                         vaccineMaster.ModifiedOn = DateTime.UtcNow;
                     }
 
-                    vaccineMaster.FarmID = vaccineMasterVm.FarmID;
+                    vaccineMaster.FarmID = FARMID;
                     vaccineMaster.VaccineName = vaccineMasterVm.VaccineName;
                     vaccineMaster.PurchaseDate = vaccineMasterVm.PurchaseDate;
                     vaccineMaster.ExpiryDate = vaccineMasterVm.ExpiryDate;
@@ -85,15 +85,15 @@ namespace FMS.Areas.FarmArea.Controllers
         }
 
         [HttpGet]
-        [Route("GetVaccineMaster/{VaccineCode}/{FarmID}")]
-        public IHttpActionResult GetVaccineMaster(int VaccineCode, int FarmID)
+        [Route("GetVaccineMaster/{VaccineCode}")]
+        public IHttpActionResult GetVaccineMaster(int VaccineCode)
         {
             try
             {
                 VaccineMaster vaccineMaster = new VaccineMaster();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    vaccineMaster = uow.VaccineMasterRepository.Get(x => x.VaccineCode == VaccineCode && x.FarmID == FarmID);
+                    vaccineMaster = uow.VaccineMasterRepository.Get(x => x.VaccineCode == VaccineCode && x.FarmID == FARMID);
 
                     vaccineMaster = vaccineMaster == null ? new VaccineMaster() : vaccineMaster;
                     return Ok(new
@@ -110,15 +110,15 @@ namespace FMS.Areas.FarmArea.Controllers
 
 
         [HttpGet]
-        [Route("GetVaccineMasterList/{FarmID}")]
-        public IHttpActionResult GetVaccineMasterList(int FarmID)
+        [Route("GetVaccineMasterList")]
+        public IHttpActionResult GetVaccineMasterList()
         {
             try
             {
                 List<VaccineMaster> vaccineMasterList = new List<VaccineMaster>();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    vaccineMasterList = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FarmID).ToList();
+                    vaccineMasterList = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {

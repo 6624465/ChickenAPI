@@ -54,7 +54,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     if (farmProfileVm.FileName != null && farmProfileVm.FileName.Length > 0)
                     {
-                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/FarmProfile/" + farmProfileVm.MobileNo + "/");
+                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/"+ farmProfileVm.FarmID + "/FarmProfile/" + farmProfileVm.MobileNo + "/");
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
@@ -69,9 +69,7 @@ namespace FMS.Areas.FarmArea.Controllers
                     }
 
 
-                    return Ok(new
-                    {
-                    });
+                    return Ok(farmProfileVm.FarmID);
                 }
             }
             catch (Exception ex)

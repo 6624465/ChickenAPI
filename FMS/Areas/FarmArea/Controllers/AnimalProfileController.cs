@@ -24,7 +24,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if (animalProfileVm.AnimalCode == 0)
+                    if (animalProfileVm.AnimalCode == -1)
                     {
                         animalProfile = new AnimalProfile();
                         animalProfile.CreatedBy = "ADMIN";
@@ -38,7 +38,7 @@ namespace FMS.Areas.FarmArea.Controllers
                         animalProfile.ModifiedOn = DateTime.UtcNow;
                     }
 
-                    animalProfile.FarmID = animalProfileVm.FarmID;
+                    animalProfile.FarmID = FARMID;
                     animalProfile.AnimalName = animalProfileVm.AnimalName;
                     animalProfile.AnimalSymbol = animalProfileVm.AnimalSymbol;
                     animalProfile.AnimalStatus = animalProfileVm.AnimalStatus;
@@ -92,15 +92,15 @@ namespace FMS.Areas.FarmArea.Controllers
         }
 
         [HttpGet]
-        [Route("GetAnimalProfile/{AnimalCode}/{FarmID}")]
-        public IHttpActionResult GetFarmProfile(int AnimalCode, int FarmID)
+        [Route("GetAnimalProfile/{AnimalCode}")]
+        public IHttpActionResult GetAnimalProfile(int AnimalCode)
         {
             try
             {
                 AnimalProfile animalProfile = new AnimalProfile();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == AnimalCode && x.FarmID == FarmID);
+                    animalProfile = uow.AnimalProfileRepository.Get(x => x.AnimalCode == AnimalCode && x.FarmID == FARMID);
 
                     var animalStatus = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_ANIMALSTATUS).ToList();
                     var gender = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_GENDER).ToList();
@@ -122,15 +122,15 @@ namespace FMS.Areas.FarmArea.Controllers
 
 
         [HttpGet]
-        [Route("GetAnimalProfileList/{FarmID}")]
-        public IHttpActionResult GetFarmProfileList(int FarmID)
+        [Route("GetAnimalProfileList}")]
+        public IHttpActionResult GetFarmProfileList()
         {
             try
             {
                 List<AnimalProfile> animalProfileList = new List<AnimalProfile>();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    animalProfileList = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FarmID).ToList();
+                    animalProfileList = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {

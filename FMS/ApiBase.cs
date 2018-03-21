@@ -18,11 +18,11 @@ namespace FMS
                 return HttpContext.Current.Request.Headers[Utility.HDRUSERID];
             }
         }
-        public Int32 COMPANYID
+        public Int32 FARMID
         {
             get
             {
-                return Convert.ToInt32(HttpContext.Current.Request.Headers[Utility.HDRCOMPANYID]);
+                return Convert.ToInt32(HttpContext.Current.Request.Headers[Utility.HDRFARMID]);
             }
         }
         public Int64 BRANCHID

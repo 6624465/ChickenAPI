@@ -14,7 +14,7 @@ namespace FMS.Utilities
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             var USERID = HttpContext.Current.Request.Headers[Utility.HDRUSERID];
-            var COMPANYID = Convert.ToInt32(HttpContext.Current.Request.Headers[Utility.HDRCOMPANYID]);
+            //var COMPANYID = Convert.ToInt32(HttpContext.Current.Request.Headers[Utility.HDRCOMPANYID]);
             var BRANCHID = Convert.ToInt64(HttpContext.Current.Request.Headers[Utility.HDRBRANCHID]);
             var AUTHTOKEN = HttpContext.Current.Request.Headers[Utility.HDRAUTHTOKEN];
 
