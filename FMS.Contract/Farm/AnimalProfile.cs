@@ -18,7 +18,7 @@ namespace FMS.Contract.Farm
         public string AnimalSymbol { get; set; }
         public Int16 AnimalStatus { get; set; }
         public string CauseOfDeath { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public Int16 Gender { get; set; }
         public Int32 SireCode { get; set; }
         public Int32 BreederCode { get; set; }
