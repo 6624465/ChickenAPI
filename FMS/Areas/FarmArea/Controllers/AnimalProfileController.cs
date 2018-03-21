@@ -39,7 +39,6 @@ namespace FMS.Areas.FarmArea.Controllers
                     }
 
                     animalProfile.FarmID = animalProfileVm.FarmID;
-                    animalProfile.AnimalCode = animalProfileVm.AnimalCode;
                     animalProfile.AnimalName = animalProfileVm.AnimalName;
                     animalProfile.AnimalSymbol = animalProfileVm.AnimalSymbol;
                     animalProfile.AnimalStatus = animalProfileVm.AnimalStatus;
