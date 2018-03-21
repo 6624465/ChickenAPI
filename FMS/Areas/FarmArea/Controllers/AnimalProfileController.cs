@@ -65,7 +65,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     if (animalProfileVm.FileName != null && animalProfileVm.FileName.Length > 0)
                     {
-                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/AnimalProfile/" + animalProfileVm.AnimalCode + "/");
+                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/"+ animalProfileVm.FarmID + "/AnimalProfile/" + animalProfileVm.AnimalCode + "/");
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);

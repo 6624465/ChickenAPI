@@ -65,6 +65,7 @@
     <Compile Include="Utility\DocumentNumberHeader.cs" />
     <Compile Include="ViewModel\AnimalProfileVM.cs" />
     <Compile Include="ViewModel\FarmProfileVM.cs" />
+    <Compile Include="ViewModel\VaccineMasterVM.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
