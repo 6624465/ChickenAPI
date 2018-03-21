@@ -10,9 +10,8 @@ namespace FMS.Contract.Farm
 {
     public class AnimalProfile
     {
-        [Key, Column(Order = 0)]
         public Int32 FarmID { get; set; }
-        [Key, Column(Order = 1)]
+        [Key, Column(Order = 0)]
         public Int32 AnimalCode { get; set; }
         public string AnimalName { get; set; }
         public string AnimalSymbol { get; set; }

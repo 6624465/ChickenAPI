@@ -10,9 +10,8 @@ namespace FMS.Contract.Farm
 {
     public class VaccineMaster
     {
-        [Key, Column(Order = 0)]
         public Int32 FarmID { get; set; }
-        [Key, Column(Order = 1)]
+        [Key, Column(Order = 0)]
         public Int32 VaccineCode { get; set; }
         public string VaccineName { get; set; }
         public DateTime? PurchaseDate { get; set; }
