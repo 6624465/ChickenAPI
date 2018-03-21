@@ -65,7 +65,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     if (animalProfileVm.FileName != null && animalProfileVm.FileName.Length > 0)
                     {
-                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/"+ animalProfileVm.FarmID + "/AnimalProfile/" + animalProfileVm.AnimalCode + "/");
+                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/" + animalProfile.FarmID + "/AnimalProfile/" + animalProfile.AnimalCode + "/");
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
@@ -105,7 +105,7 @@ namespace FMS.Areas.FarmArea.Controllers
                     var animalStatus = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_ANIMALSTATUS).ToList();
                     var gender = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_GENDER).ToList();
 
-                    animalProfile = animalProfile == null ? new AnimalProfile() : animalProfile;
+                    animalProfile = animalProfile == null ? new AnimalProfile { AnimalCode = -1 } : animalProfile;
                     return Ok(new
                     {
                         animalProfile,
@@ -122,7 +122,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
 
         [HttpGet]
-        [Route("GetAnimalProfileList}")]
+        [Route("GetAnimalProfileList")]
         public IHttpActionResult GetFarmProfileList()
         {
             try

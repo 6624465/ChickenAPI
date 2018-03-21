@@ -58,7 +58,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     if (vaccineMasterVm.FileName != null && vaccineMasterVm.FileName.Length > 0)
                     {
-                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/" + vaccineMasterVm.FarmID + "/VaccineMaster/" + vaccineMasterVm.VaccineCode + "/");
+                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/" + vaccineMaster.FarmID + "/VaccineMaster/" + vaccineMaster.VaccineCode + "/");
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
@@ -95,7 +95,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 {
                     vaccineMaster = uow.VaccineMasterRepository.Get(x => x.VaccineCode == VaccineCode && x.FarmID == FARMID);
 
-                    vaccineMaster = vaccineMaster == null ? new VaccineMaster() : vaccineMaster;
+                    vaccineMaster = vaccineMaster == null ? new VaccineMaster { VaccineCode = -1 } : vaccineMaster;
                     return Ok(new
                     {
                         vaccineMaster
