@@ -18,26 +18,36 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
+                VaccineEntry vaccinedtl = new VaccineEntry();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     if (vaccineEntry.RecordID == -1)
                     {
-                        //vaccineEntry = new VaccineEntry();
-                        vaccineEntry.CreatedBy = "ADMIN";
-                        vaccineEntry.CreatedOn = DateTime.UtcNow;
+                        vaccinedtl = vaccineEntry;
+
+                        vaccinedtl.CreatedBy = "ADMIN";
+                        vaccinedtl.CreatedOn = DateTime.UtcNow;
                     }
                     else
                     {
-                        vaccineEntry = uow.VaccineEntryRepository.Get(x => x.RecordID == vaccineEntry.RecordID);
+                        vaccinedtl = uow.VaccineEntryRepository.Get(x => x.RecordID == vaccineEntry.RecordID);
 
-                        vaccineEntry.ModifiedBy = "ADMIN";
-                        vaccineEntry.ModifiedOn = DateTime.UtcNow;
+                        vaccinedtl.AnimalCode = vaccineEntry.AnimalCode;
+                        vaccinedtl.AnimalAge = vaccineEntry.AnimalAge;
+                        vaccinedtl.VaccineType = vaccineEntry.VaccineType;
+                        vaccinedtl.VaccineName = vaccineEntry.VaccineName;
+                        vaccinedtl.VaccineCompany = vaccineEntry.VaccineCompany;
+                        vaccinedtl.Remarks = vaccineEntry.Remarks;
+                        vaccinedtl.IsDeleted = vaccineEntry.IsDeleted;
+
+                        vaccinedtl.ModifiedBy = "ADMIN";
+                        vaccinedtl.ModifiedOn = DateTime.UtcNow;
                     }
 
-                    vaccineEntry.FarmID = FARMID;
+                    vaccinedtl.FarmID = FARMID;
 
 
-                    uow.VaccineEntryRepository.Save(vaccineEntry);
+                    uow.VaccineEntryRepository.Save(vaccinedtl);
                     uow.SaveChanges();
 
                     return Ok(new
