@@ -22,7 +22,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 {
                     if (vaccineEntry.RecordID == -1)
                     {
-                        vaccineEntry = new VaccineEntry();
+                        //vaccineEntry = new VaccineEntry();
                         vaccineEntry.CreatedBy = "ADMIN";
                         vaccineEntry.CreatedOn = DateTime.UtcNow;
                     }
@@ -65,10 +65,13 @@ namespace FMS.Areas.FarmArea.Controllers
                     vaccineEntry = vaccineEntry == null ? new VaccineEntry { RecordID = -1 } : vaccineEntry;
 
                     var lstVaccineMaster = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FARMID && x.IsDeleted != false).ToList();
+                    var lstAnimalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
+
                     return Ok(new
                     {
                         vaccineEntry,
-                        lstVaccineMaster
+                        lstVaccineMaster,
+                        lstAnimalProfile
                     });
                 }
             }
