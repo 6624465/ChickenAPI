@@ -70,15 +70,10 @@ namespace FMS.Areas.FarmArea.Controllers
                     expensesMaster = uow.ExpensesMasterRepository.Get(x => x.ExpensesID == ExpensesID && x.FarmID == FARMID);
 
                     expensesMaster = expensesMaster == null ? new ExpensesMaster { ExpensesID = -1 } : expensesMaster;
-
-                    var lstVaccineMaster = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FARMID && x.IsDeleted != false).ToList();
-                    var lstAnimalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
-
+                    
                     return Ok(new
                     {
-                        expensesMaster,
-                        lstVaccineMaster,
-                        lstAnimalProfile
+                        expensesMaster
                     });
                 }
             }
