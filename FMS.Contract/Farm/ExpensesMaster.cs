@@ -14,7 +14,7 @@ namespace FMS.Contract.Farm
         public Int32 ExpensesID { get; set; }
         public Int32 FarmID { get; set; }
         //[Key, Column(Order = 0)]
-        public Int32 ExpensesCode { get; set; }
+        public string ExpensesCode { get; set; }
         public string ExpensesName { get; set; }
         public string ExpensesType { get; set; }
         public string CreatedBy { get; set; }
