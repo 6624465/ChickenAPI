@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace FMS.Repository.Farm
@@ -59,6 +60,17 @@ namespace FMS.Repository.Farm
             try
             {
                 return entities.VaccineEntrys.Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<VaccineEntry> GetAsync(Func<VaccineEntry, bool> predicate)
+        {
+            try
+            {
+                return await entities.VaccineEntrys.Where(predicate).AsQueryable().FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {

@@ -15,5 +15,7 @@ namespace FMS.Repository
         void Add(T entity);
         void Attach(T entity);
         void Delete(T entity);
+
+        //Task<T> GetAsync(Func<T, bool> predicate);
     }
 }

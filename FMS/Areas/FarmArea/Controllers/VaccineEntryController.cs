@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace FMS.Areas.FarmArea.Controllers
@@ -70,7 +71,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 VaccineEntry vaccineEntry = new VaccineEntry();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    vaccineEntry = uow.VaccineEntryRepository.Get(x => x.RecordID == RecordID && x.FarmID == FARMID);
+                    vaccineEntry =  uow.VaccineEntryRepository.Get(x => x.RecordID == RecordID && x.FarmID == FARMID);
 
                     vaccineEntry = vaccineEntry == null ? new VaccineEntry { RecordID = -1 } : vaccineEntry;
 
