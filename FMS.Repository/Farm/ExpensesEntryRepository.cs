@@ -92,7 +92,7 @@ namespace FMS.Repository.Farm
             try
             {
                 ExpensesEntry expensesEntry = entities.ExpensesEntrys
-               .Where(x => x.FarmID == entity.FarmID && x.ExpensesCode == entity.ExpensesCode).FirstOrDefault();
+               .Where(x => x.FarmID == entity.FarmID && x.RecordID == entity.RecordID).FirstOrDefault();
 
                 if (expensesEntry != null)
                 {

@@ -12,9 +12,9 @@ namespace FMS.Contract.Farm
     {
         [Key, Column(Order = 0)]
         public Int32 RecordID { get; set; }
-        [Key, Column(Order = 1)]
+        //[Key, Column(Order = 1)]
         public Int32 FarmID { get; set; }
-        [Key, Column(Order = 2)]
+        //[Key, Column(Order = 2)]
         public Int32 ExpensesCode { get; set; }
         public string VendorName { get; set; }
         public string VendorAddress { get; set; }
