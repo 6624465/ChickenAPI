@@ -68,19 +68,19 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
-                TreatmentEntry TreatmentEntry = new TreatmentEntry();
+                TreatmentEntry treatmentEntry = new TreatmentEntry();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    TreatmentEntry = uow.TreatmentEntryRepository.Get(x => x.RecordID == RecordID && x.FarmID == FARMID);
+                    treatmentEntry = uow.TreatmentEntryRepository.Get(x => x.RecordID == RecordID && x.FarmID == FARMID);
 
-                    TreatmentEntry = TreatmentEntry == null ? new TreatmentEntry { RecordID = -1 } : TreatmentEntry;
+                    treatmentEntry = treatmentEntry == null ? new TreatmentEntry { RecordID = -1 } : treatmentEntry;
 
                     var lstVaccineMaster = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FARMID && x.IsDeleted != false).ToList();
                     var lstAnimalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {
-                        TreatmentEntry,
+                        treatmentEntry,
                         lstVaccineMaster,
                         lstAnimalProfile
                     });
@@ -99,14 +99,14 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
-                List<TreatmentEntry> TreatmentEntryList = new List<TreatmentEntry>();
+                List<TreatmentEntry> treatmentEntryList = new List<TreatmentEntry>();
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    TreatmentEntryList = uow.TreatmentEntryRepository.GetAll(x => x.FarmID == FARMID).ToList();
+                    treatmentEntryList = uow.TreatmentEntryRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {
-                        TreatmentEntryList
+                        treatmentEntryList
                     });
                 }
             }
