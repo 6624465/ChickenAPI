@@ -10,6 +10,7 @@ namespace FMS.Contract.Farm
 {
     public class TreatmentEntry
     {
+
         [Key, Column(Order = 0)]
         public Int32 RecordID { get; set; }
         //[Key, Column(Order = 1)]
