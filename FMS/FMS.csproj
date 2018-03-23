@@ -167,6 +167,7 @@
     <Compile Include="Areas\FarmArea\Controllers\AnimalProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\FarmProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\RegisterController.cs" />
+    <Compile Include="Areas\FarmArea\Controllers\TreatmentEntryController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\VaccineEntryController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\VaccineMasterController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\VaccineScheduleController.cs" />

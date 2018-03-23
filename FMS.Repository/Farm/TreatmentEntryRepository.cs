@@ -92,7 +92,7 @@ namespace FMS.Repository.Farm
             try
             {
                 TreatmentEntry transporterHeader = entities.TreatmentEntrys
-               .Where(x => x.FarmID == entity.FarmID && x.RecordID == entity.RecordID && x.AnimalCode == entity.AnimalCode).FirstOrDefault();
+               .Where(x => x.FarmID == entity.FarmID && x.RecordID == entity.RecordID).FirstOrDefault();
 
                 if (transporterHeader != null)
                 {
