@@ -92,7 +92,7 @@ namespace FMS.Repository.Farm
             try
             {
                 ExpensesMaster expensesMaster = entities.ExpensesMasters
-               .Where(x => x.FramID == entity.FramID && x.ExpensesCode == entity.ExpensesCode).FirstOrDefault();
+               .Where(x => x.FarmID == entity.FarmID && x.ExpensesID == entity.ExpensesID).FirstOrDefault();
 
                 if (expensesMaster != null)
                 {

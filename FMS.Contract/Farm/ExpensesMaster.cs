@@ -11,8 +11,9 @@ namespace FMS.Contract.Farm
     public class ExpensesMaster
     {
         [Key, Column(Order = 0)]
-        public Int32 FramID { get; set; }
-        [Key, Column(Order = 1)]
+        public Int32 ExpensesID { get; set; }
+        public Int32 FarmID { get; set; }
+        //[Key, Column(Order = 0)]
         public Int32 ExpensesCode { get; set; }
         public string ExpensesName { get; set; }
         public string ExpensesType { get; set; }

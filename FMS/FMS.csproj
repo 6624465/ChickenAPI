@@ -165,6 +165,7 @@
     <Compile Include="Areas\ConfigArea\ConfigAreaAreaRegistration.cs" />
     <Compile Include="Areas\ConfigArea\Controllers\LookupController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\AnimalProfileController.cs" />
+    <Compile Include="Areas\FarmArea\Controllers\ExpensesMasterController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\FarmProfileController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\RegisterController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\TreatmentEntryController.cs" />
