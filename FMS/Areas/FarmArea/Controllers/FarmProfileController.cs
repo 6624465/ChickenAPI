@@ -69,7 +69,7 @@ namespace FMS.Areas.FarmArea.Controllers
                     }
 
 
-                    return Ok(farmProfileVm.FarmID);
+                    return Ok(farmProfile.FarmID);
                 }
             }
             catch (Exception ex)
