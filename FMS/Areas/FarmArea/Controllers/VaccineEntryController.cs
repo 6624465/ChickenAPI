@@ -115,5 +115,28 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        [Route("GetAnimalCodeList/{AnimalCode}")]
+        public IHttpActionResult GetAnimalCodeList(int AnimalCode)
+        {
+            try
+            {
+                AnimalProfile AnimalCodeList = new AnimalProfile();
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    AnimalCodeList = uow.AnimalProfileRepository.Get(x => x.FarmID == FARMID && x.AnimalCode == AnimalCode);
+                   int age = (DateTime.UtcNow-AnimalCodeList.DateOfBirth.Value).Days;// (DateTime.UtcNow - AnimalCodeList.DateOfBirth).TotalDays.ToString();
+
+                    return Ok(new
+                    {
+                        age
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
