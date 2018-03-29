@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\Lookup.cs" />
+    <Compile Include="Farm\AnimalForSale.cs" />
     <Compile Include="Farm\AnimalProfile.cs" />
+    <Compile Include="Farm\AnimalSaleEntry.cs" />
     <Compile Include="Farm\ExpensesEntry.cs" />
     <Compile Include="Farm\ExpensesMaster.cs" />
     <Compile Include="Farm\FarmProfile.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Security\UserRights.cs" />
     <Compile Include="Utility\DocumentNumberDetail.cs" />
     <Compile Include="Utility\DocumentNumberHeader.cs" />
+    <Compile Include="ViewModel\AnimalForSaleVM.cs" />
     <Compile Include="ViewModel\AnimalProfileVM.cs" />
     <Compile Include="ViewModel\FarmProfileVM.cs" />
     <Compile Include="ViewModel\VaccineMasterVM.cs" />

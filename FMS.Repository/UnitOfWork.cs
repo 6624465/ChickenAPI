@@ -191,6 +191,32 @@ namespace FMS.Repository
                 return standardPriceRepository;
             }
         }
+
+        IAnimalForSaleRepository animalForSaleRepository = null;
+        public IAnimalForSaleRepository AnimalForSaleRepository
+        {
+            get
+            {
+                if (animalForSaleRepository == null)
+                {
+                    animalForSaleRepository = new AnimalForSaleRepository(entities);
+                }
+                return animalForSaleRepository;
+            }
+        }
+
+        IAnimalSaleEntryRepository animalSaleEntryRepository = null;
+        public IAnimalSaleEntryRepository AnimalSaleEntryRepository
+        {
+            get
+            {
+                if (animalSaleEntryRepository == null)
+                {
+                    animalSaleEntryRepository = new AnimalSaleEntryRepository(entities);
+                }
+                return animalSaleEntryRepository;
+            }
+        }
         #endregion Farm Repository
 
 

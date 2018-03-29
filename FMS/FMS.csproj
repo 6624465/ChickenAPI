@@ -164,7 +164,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\ConfigArea\ConfigAreaAreaRegistration.cs" />
     <Compile Include="Areas\ConfigArea\Controllers\LookupController.cs" />
+    <Compile Include="Areas\FarmArea\Controllers\AnimalForSaleController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\AnimalProfileController.cs" />
+    <Compile Include="Areas\FarmArea\Controllers\AnimalSaleEntryController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\ExpensesEntryController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\ExpensesMasterController.cs" />
     <Compile Include="Areas\FarmArea\Controllers\FarmProfileController.cs" />

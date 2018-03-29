@@ -89,11 +89,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Config\IConfig\ILookupRepository.cs" />
     <Compile Include="Config\LookupRepository.cs" />
+    <Compile Include="Farm\AnimalForSaleRepository.cs" />
     <Compile Include="Farm\AnimalProfileRepository.cs" />
+    <Compile Include="Farm\AnimalSaleEntryRepository.cs" />
     <Compile Include="Farm\ExpensesEntryRepository.cs" />
     <Compile Include="Farm\ExpensesMasterRepository.cs" />
     <Compile Include="Farm\FarmProfileRepository.cs" />
+    <Compile Include="Farm\IFarm\IAnimalForSaleRepository.cs" />
     <Compile Include="Farm\IFarm\IAnimalProfileRepository.cs" />
+    <Compile Include="Farm\IFarm\IAnimalSaleEntryRepository.cs" />
     <Compile Include="Farm\IFarm\IExpensesEntryRepository.cs" />
     <Compile Include="Farm\IFarm\IExpensesMasterRepository.cs" />
     <Compile Include="Farm\IFarm\IFarmProfileRepository.cs" />
