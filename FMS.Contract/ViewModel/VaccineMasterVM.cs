@@ -11,6 +11,8 @@ namespace FMS.Contract.ViewModel
         public Int32 FarmID { get; set; }
         public Int32 VaccineCode { get; set; }
         public string VaccineName { get; set; }
+        public string VaccineType { get; set; }
+        public string VaccineCompany { get; set; }
         public DateTime? PurchaseDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public string BatchNo { get; set; }

@@ -14,6 +14,8 @@ namespace FMS.Contract.Farm
         [Key, Column(Order = 0)]
         public Int32 VaccineCode { get; set; }
         public string VaccineName { get; set; }
+        public string VaccineType { get; set; }
+        public string VaccineCompany { get; set; }
         public DateTime? PurchaseDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public string BatchNo { get; set; }

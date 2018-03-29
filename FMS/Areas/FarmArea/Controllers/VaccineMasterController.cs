@@ -40,6 +40,8 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     vaccineMaster.FarmID = FARMID;
                     vaccineMaster.VaccineName = vaccineMasterVm.VaccineName;
+                    vaccineMaster.VaccineType = vaccineMasterVm.VaccineType;
+                    vaccineMaster.VaccineCompany = vaccineMasterVm.VaccineCompany;
                     vaccineMaster.PurchaseDate = vaccineMasterVm.PurchaseDate;
                     vaccineMaster.ExpiryDate = vaccineMasterVm.ExpiryDate;
                     vaccineMaster.BatchNo = vaccineMasterVm.BatchNo;
