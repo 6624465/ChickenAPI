@@ -75,13 +75,13 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     treatmentEntry = treatmentEntry == null ? new TreatmentEntry { RecordID = -1 } : treatmentEntry;
 
-                    var lstVaccineMaster = uow.VaccineMasterRepository.GetAll(x => x.FarmID == FARMID && x.IsDeleted != false).ToList();
+                    var lstMedicineMaster = uow.MedicineMasterRepository.GetAll(x => x.FarmID == FARMID && x.IsDeleted != false).ToList();
                     var lstAnimalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {
                         treatmentEntry,
-                        lstVaccineMaster,
+                        lstMedicineMaster,
                         lstAnimalProfile
                     });
                 }

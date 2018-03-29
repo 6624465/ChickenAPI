@@ -92,7 +92,7 @@ namespace FMS.Repository.Farm
             try
             {
                 VaccineSchedule vaccineSchedule = entities.VaccineSchedules
-               .Where(x => x.FarmID == entity.FarmID && x.VaccineCode == entity.VaccineCode).FirstOrDefault();
+               .Where(x => x.FarmID == entity.FarmID && x.VaccineScheduleId == entity.VaccineScheduleId).FirstOrDefault();
 
                 if (vaccineSchedule != null)
                 {
