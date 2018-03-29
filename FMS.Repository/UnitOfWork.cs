@@ -178,6 +178,19 @@ namespace FMS.Repository
                 return vaccineScheduleRepository;
             }
         }
+
+        IStandardPriceRepository standardPriceRepository = null;
+        public IStandardPriceRepository StandardPriceRepository
+        {
+            get
+            {
+                if (standardPriceRepository == null)
+                {
+                    standardPriceRepository = new StandardPriceRepository(entities);
+                }
+                return standardPriceRepository;
+            }
+        }
         #endregion Farm Repository
 
 

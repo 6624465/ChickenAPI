@@ -48,6 +48,7 @@
     <Compile Include="Farm\ExpensesMaster.cs" />
     <Compile Include="Farm\FarmProfile.cs" />
     <Compile Include="Farm\MedicineMaster.cs" />
+    <Compile Include="Farm\StandardPrice.cs" />
     <Compile Include="Farm\TransporterHeader.cs" />
     <Compile Include="Farm\TransporterRoute.cs" />
     <Compile Include="Farm\TreatmentEntry.cs" />

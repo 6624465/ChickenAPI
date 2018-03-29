@@ -104,7 +104,9 @@
     <Compile Include="Farm\IFarm\IVaccineEntryRepository.cs" />
     <Compile Include="Farm\IFarm\IVaccineMasterRepository.cs" />
     <Compile Include="Farm\IFarm\IVaccineScheduleRepository.cs" />
+    <Compile Include="Farm\IFarm\IStandardPriceRepository.cs" />
     <Compile Include="Farm\MedicineMasterRepository.cs" />
+    <Compile Include="Farm\StandardPriceRepository.cs" />
     <Compile Include="Farm\TransporterHeaderRepository.cs" />
     <Compile Include="Farm\TransporterRouteRepository.cs" />
     <Compile Include="Farm\TreatmentEntryRepository.cs" />

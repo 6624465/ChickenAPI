@@ -16,6 +16,7 @@ namespace FMS
         public static string SmsOTP = "OTP for CKN-FM: {0}";
         public static string SmsSignUpOTP = "Your CKN-FM SIGN-UP OTP is: {0}";
 
+        public static string CONFIG_CURRENCY = "Currency";
         public static string CONFIG_ANIMALSTATUS = "AnimalStatus";
         public static string CONFIG_GENDER = "Gender";
     }

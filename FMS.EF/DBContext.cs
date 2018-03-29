@@ -35,6 +35,7 @@ namespace FMS.EF
             modelBuilder.Entity<VaccineEntry>().ToTable("VaccineEntry", "Farm");
             modelBuilder.Entity<VaccineMaster>().ToTable("VaccineMaster", "Farm");
             modelBuilder.Entity<VaccineSchedule>().ToTable("VaccineSchedule", "Farm");
+            modelBuilder.Entity<StandardPrice>().ToTable("StandardPrice", "Farm");
 
             #endregion Farm DB Schema
 
@@ -76,6 +77,7 @@ namespace FMS.EF
         public virtual DbSet<VaccineEntry> VaccineEntrys { get; set; }
         public virtual DbSet<VaccineMaster> VaccineMasters { get; set; }
         public virtual DbSet<VaccineSchedule> VaccineSchedules { get; set; }
+        public virtual DbSet<StandardPrice> StandardPrices { get; set; }
         #endregion Farm Schema
 
         #region Security Schema
