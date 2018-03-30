@@ -168,5 +168,28 @@ namespace FMS.Areas.FarmArea.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        [Route("GetAnimalStatusCode/{AnimalCode}")]
+        public IHttpActionResult GetAnimalStatusCode(int AnimalCode)
+        {
+            try
+            {
+                AnimalProfile AnimalCodeList = new AnimalProfile();
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    AnimalCodeList = uow.AnimalProfileRepository.Get(x => x.FarmID == FARMID && x.AnimalCode == AnimalCode);
+                    int animalstatuscode = AnimalCodeList.AnimalStatus;
+
+                    return Ok(new
+                    {
+                        animalstatuscode
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
