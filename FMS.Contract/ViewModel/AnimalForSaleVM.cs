@@ -19,7 +19,6 @@ namespace FMS.Contract.ViewModel
         public Int32 SireCode { get; set; }
         public Int32 BreederCode { get; set; }
         public string Talents { get; set; }
-        public Int32 Age { get; set; }
         public decimal Weight { get; set; }
         public string FightingRecord { get; set; }
         public bool? IsShowStandardPrice { get; set; }

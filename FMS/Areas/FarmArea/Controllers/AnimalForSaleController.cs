@@ -45,7 +45,6 @@ namespace FMS.Areas.FarmArea.Controllers
                     animalForSale.SireCode = animalForSaleVm.SireCode;
                     animalForSale.BreederCode = animalForSaleVm.BreederCode;
                     animalForSale.Talents = animalForSaleVm.Talents;
-                    animalForSale.Age = animalForSaleVm.Age;
                     animalForSale.Weight = animalForSaleVm.Weight;
                     animalForSale.FightingRecord = animalForSaleVm.FightingRecord;
                     animalForSale.IsShowStandardPrice = animalForSaleVm.IsShowStandardPrice;
