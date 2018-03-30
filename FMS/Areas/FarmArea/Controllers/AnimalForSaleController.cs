@@ -20,49 +20,49 @@ namespace FMS.Areas.FarmArea.Controllers
         {
             try
             {
-                AnimalForSale animalProfile = new AnimalForSale();
+                AnimalForSale animalForSale = new AnimalForSale();
 
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     if (animalForSaleVm.SaleID == -1)
                     {
-                        animalProfile = new AnimalForSale();
-                        animalProfile.CreatedBy = "ADMIN";
-                        animalProfile.CreatedOn = DateTime.UtcNow;
+                        animalForSale = new AnimalForSale();
+                        animalForSale.CreatedBy = "ADMIN";
+                        animalForSale.CreatedOn = DateTime.UtcNow;
                     }
                     else
                     {
-                        animalProfile = uow.AnimalForSaleRepository.Get(x => x.AnimalCode == animalForSaleVm.AnimalCode);
+                        animalForSale = uow.AnimalForSaleRepository.Get(x => x.AnimalCode == animalForSaleVm.AnimalCode);
 
-                        animalProfile.ModifiedBy = "ADMIN";
-                        animalProfile.ModifiedOn = DateTime.UtcNow;
+                        animalForSale.ModifiedBy = "ADMIN";
+                        animalForSale.ModifiedOn = DateTime.UtcNow;
                     }
 
-                    animalProfile.FarmID = FARMID;
-                    animalProfile.AnimalCode = animalForSaleVm.AnimalCode;
-                    animalProfile.AnimalAge = animalForSaleVm.AnimalAge;
-                    animalProfile.Breed = animalForSaleVm.Breed;
-                    animalProfile.SireCode = animalForSaleVm.SireCode;
-                    animalProfile.BreederCode = animalForSaleVm.BreederCode;
-                    animalProfile.Talents = animalForSaleVm.Talents;
-                    animalProfile.Age = animalForSaleVm.Age;
-                    animalProfile.Weight = animalForSaleVm.Weight;
-                    animalProfile.FightingRecord = animalForSaleVm.FightingRecord;
-                    animalProfile.IsShowStandardPrice = animalForSaleVm.IsShowStandardPrice;
-                    animalProfile.IsActive = animalForSaleVm.IsActive;
+                    animalForSale.FarmID = FARMID;
+                    animalForSale.AnimalCode = animalForSaleVm.AnimalCode;
+                    animalForSale.AnimalAge = animalForSaleVm.AnimalAge;
+                    animalForSale.Breed = animalForSaleVm.Breed;
+                    animalForSale.SireCode = animalForSaleVm.SireCode;
+                    animalForSale.BreederCode = animalForSaleVm.BreederCode;
+                    animalForSale.Talents = animalForSaleVm.Talents;
+                    animalForSale.Age = animalForSaleVm.Age;
+                    animalForSale.Weight = animalForSaleVm.Weight;
+                    animalForSale.FightingRecord = animalForSaleVm.FightingRecord;
+                    animalForSale.IsShowStandardPrice = animalForSaleVm.IsShowStandardPrice;
+                    animalForSale.IsActive = animalForSaleVm.IsActive;
 
                     var myfilename = string.Format(@"{0}{1}", Guid.NewGuid(), ".jpeg");
                     if (animalForSaleVm.FileName != null && animalForSaleVm.FileName.Length > 0)
                     {
-                        animalProfile.AnimalPhoto = myfilename;
+                        animalForSale.AnimalPhoto = myfilename;
                     }
 
-                    uow.AnimalForSaleRepository.Save(animalProfile);
+                    uow.AnimalForSaleRepository.Save(animalForSale);
                     uow.SaveChanges();
 
                     if (animalForSaleVm.FileName != null && animalForSaleVm.FileName.Length > 0)
                     {
-                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/" + animalProfile.FarmID + "/AnimalForSale/" + animalProfile.AnimalCode + "/");
+                        string path = System.Web.Hosting.HostingEnvironment.MapPath("~/Uploads/" + animalForSale.FarmID + "/AnimalForSale/" + animalForSale.SaleID + "/");
                         if (!Directory.Exists(path))
                         {
                             Directory.CreateDirectory(path);
@@ -101,12 +101,12 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     animalForSale = animalForSale == null ? new AnimalForSale { SaleID = -1 } : animalForSale;
 
-                    var currencyList = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_CURRENCY).ToList();
+                    var animalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID == FARMID).ToList();
 
                     return Ok(new
                     {
                         animalForSale,
-                        currencyList
+                        animalProfile
                     });
                 }
             }

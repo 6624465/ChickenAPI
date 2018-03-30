@@ -14,13 +14,13 @@ namespace FMS.Contract.Farm
         public Int32 SaleID { get; set; }
         public Int32 FarmID { get; set; }
         public Int32 AnimalCode { get; set; }
-        public Int16 AnimalAge { get; set; }
+        public Int16? AnimalAge { get; set; }
         public string Breed { get; set; }
-        public Int32 SireCode { get; set; }
-        public Int32 BreederCode { get; set; }
+        public Int32? SireCode { get; set; }
+        public Int32? BreederCode { get; set; }
         public string Talents { get; set; }
-        public Int32 Age { get; set; }
-        public decimal Weight { get; set; }
+        public Int32? Age { get; set; }
+        public decimal? Weight { get; set; }
         public string FightingRecord { get; set; }
         public bool? IsShowStandardPrice { get; set; }
         public string AnimalPhoto { get; set; }
