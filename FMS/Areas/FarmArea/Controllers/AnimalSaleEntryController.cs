@@ -77,12 +77,12 @@ namespace FMS.Areas.FarmArea.Controllers
 
                     animalSaleEntry = animalSaleEntry == null ? new AnimalSaleEntry { SaleEntryID = -1 } : animalSaleEntry;
 
-                    var currencyList = uow.LookupRepository.GetAll(x => x.LookupCategory == Utility.CONFIG_CURRENCY).ToList();
+                    var animalProfile = uow.AnimalProfileRepository.GetAll(x => x.FarmID ==FARMID).ToList();
 
                     return Ok(new
                     {
                         animalSaleEntry,
-                        currencyList
+                        animalProfile
                     });
                 }
             }
