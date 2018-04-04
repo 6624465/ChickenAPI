@@ -24,7 +24,7 @@ namespace FMS.Areas.FarmArea.Controllers
 
                 using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if (farmProfileVm.FarmID == 0)
+                    if (farmProfileVm.FarmID == -1)
                     {
                         farmProfile = new FarmProfile();
                     }
@@ -88,6 +88,7 @@ namespace FMS.Areas.FarmArea.Controllers
                 using (UnitOfWork uow = new UnitOfWork())
                 {
                     farmProfile = uow.FarmProfileRepository.Get(x => x.MobileNo == MobileNo);
+                    farmProfile = farmProfile == null ? new FarmProfile { FarmID = -1,MobileNo=MobileNo } : farmProfile;
 
                     return Ok(new
                     {
